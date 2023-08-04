@@ -15,6 +15,6 @@ def main():
     
     login_page()
     ##st.write(fl.login_id)
-    user_id=st.text_input(placeholder='아이디를 입력하세요')
+    
 if __name__ == "__main__":
     main()
