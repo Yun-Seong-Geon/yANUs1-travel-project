@@ -1,3 +1,4 @@
+#pip install googletrans==4.0.0rc1
 from googletrans import Translator
 
 options = ['text', 'file']
@@ -18,7 +19,7 @@ class Google_Translator:
     
 def translate_eng(text):
     translator = Google_Translator()
-    result = translator.translate(text,'ko')
+    result = translator.translate(text,'en')
     
     return result['tgt_text']
         
@@ -27,13 +28,13 @@ def translate_eng(text):
     ## 파이썬 번역 프로그램 
 # if __name__ == '__main__':
 #     translator = Google_Translator()
-#     print(translate_eng('Hello!!'))
+#     print(translate_eng('안녕하세요!!'))
  
 #     # Select the language you want to translate to
 #     tgt_lang_code = input('# Enter language code (Default: en): ')
  
 #     if tgt_lang_code == '':
-#         tgt_lang_code = 'ko'
+#         tgt_lang_code = 'en'
  
 #     print('>> You chose: {}\n'.format(tgt_lang_code))
  
