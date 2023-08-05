@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_migrate import Migrate
+from flask_login import LoginManager
 
 migrate = Migrate()
 db = SQLAlchemy()
@@ -18,9 +19,18 @@ def create_app():
     from .auth import auth
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-    
     from .models import User,Note
     create_database(app)
+    
+    # flask-login 적용
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.sign_in'
+    login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(id):
+        return User.query.get(id)  # primary_key
+    
     return app
 
 def create_database(app):

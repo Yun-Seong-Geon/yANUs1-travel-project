@@ -15,7 +15,5 @@ function joinform_check(){
       login_pw.focus();
       return false;
     };
-
-    alert("로그인이 되었습니다.");
-    location.href="main.html"
+    return true;
 }

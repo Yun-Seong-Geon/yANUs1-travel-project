@@ -2,27 +2,31 @@ from flask import Blueprint,render_template,request,flash,redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
-
+from flask_login import login_user, login_required, logout_user, current_user
+    
 auth = Blueprint('auth', __name__)
 
 @auth.route('/sign-in',methods=['GET','POST'])
 def sign_in():
     if request.method == 'POST':
-        id = request.form.get('gaib_id')
-        password1 = request.form.get('gaib_pw')
+        id = request.form.get('login_id')
+        password1 = request.form.get('login_pw')
 
         # search User in database & compare password
         user = User.query.filter_by(id=id).first()
         if user:
             if check_password_hash(user.password, password1):
                 flash('로그인 완료', category='success')
-                return redirect(url_for('views.login'))
+                login_user(user, remember=True)
+                return redirect(url_for('view.main'))
             else: 
                 flash('비밀번호가 다릅니다.', category='error')
         else:
             flash('해당 아이디 정보가 없습니다.', category='error')
 
     return render_template('login.html')
+
+
 @auth.route('/logout')
 def logout():
     return "<p>Logout</p>"
