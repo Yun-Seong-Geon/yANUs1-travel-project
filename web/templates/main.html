@@ -28,6 +28,7 @@
             {% endfor %}
         {% endif %}
         {% endwith %}
+        <button onclick="window.location.href='{{ url_for('auth.logout') }}';">로그아웃</button>
     </div>
 </body>
 </html>

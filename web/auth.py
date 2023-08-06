@@ -29,7 +29,8 @@ def sign_in():
 
 @auth.route('/logout')
 def logout():
-    return "<p>Logout</p>"
+    logout_user()
+    return redirect(url_for('view.home'))
 
 @auth.route('/sign-up',methods=['GET','POST'])
 def sign_up():
@@ -66,6 +67,8 @@ def sign_up():
                         phone = phone)
         db.session.add(new_user)
         db.session.commit()
+        
+
         flash('회원가입 완료',category='success')
         return redirect(url_for('views.login'))
     return render_template('gaib.html')
