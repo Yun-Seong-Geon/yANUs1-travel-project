@@ -5,9 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
+    <script src="static/js/main.js"></script>
 </head>
 <body>
+    <h1>{{ user_nickname }}님 환영합니다!</h1>
     <h1>로그인 성공!</h1>
     <p>메인 화면에 오신 것을 환영합니다.</p>
+    <form action="/main" method="POST",onsubmit="return checkInput();">
+        <div class="trans_text">
+            <h4>텍스트입력</h4>
+            <input type="text" name="trans_text" id="trans_text" placeholder="번역할 글을 입력하세요.">
+            <button type="submit">번역</button>
+        </div>
+    </form>
+    <div class="translated_text">
+        <h4>번역된 텍스트:</h4>
+        <p>{{ translated_text }}</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
 </body>
 </html>
