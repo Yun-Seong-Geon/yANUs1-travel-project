@@ -49,21 +49,36 @@
                 <input type="text" name="trans_text" id="trans_text"  class="query" value="">
         <div class="icons">
             <div><img src="./static/search.png" alt="search"></div>
+            
            
         </div>
         </div>
-        <div class="button">
-            <button type="submit" class="searchBtn"> 번역 하기</button>
+        <!-- <div class="button">
+            <button type="submit" class="searchBtn"> 번역 하기</button> -->
+            <script>
+                function handleKeyPress(event) {
+                    // Enter 키의 keyCode는 13
+                    if (event.keyCode === 13) {
+                        var inputText = document.getElementById("inputText").value;{
+                        transBox();}
+                        // alert("입력한 텍스트: " + inputText);
+                    }
+                }
+            </script>
             <div class="translated_text">
-                <h2>번역된 텍스트:</h2>
-                <p>{{ translated_text }}</p>
+                
+                <!-- <h2>번역된 텍스트:</h2> -->
+                <div class = "transBox">
+                   
+                <h4>{{ translated_text }}</h4>
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
-                        <p class="alert alert-{{ category }}">{{ message }}</p>
+                        <h4 class="alert alert-{{ category }}">{{ message }}</h4>
                     {% endfor %}
                 {% endif %}
                 {% endwith %}
+            </div>
             </div> 
         </form>
         </section>
