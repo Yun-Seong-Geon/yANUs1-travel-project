@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
+    <link rel="stylesheet" href={{url_for('static',filename='css/main.css')}}>
     <script src="static/js/main.js"></script>
 </head>
 <body>
-    <h1>{{ user_nickname }}님 환영합니다!</h1>
+    <!-- <h1>{{ user_nickname }}님 환영합니다!</h1>
     <h1>로그인 성공!</h1>
     <p>메인 화면에 오신 것을 환영합니다.</p>
     <form action="/main" method="POST",onsubmit="return checkInput();">
@@ -29,6 +30,31 @@
         {% endif %}
         {% endwith %}
         <button onclick="window.location.href='{{ url_for('auth.logout') }}';">로그아웃</button>
+    </div> -->
+
+    <div class="top">
+        <header>
+            <div class="top_menu">
+                <a >{{ user_nickname }}님 환영합니다!</a>
+                <a href="./mypage.html">마이페이지</a>
+                <a href="./login.html">로그아웃</a>
+            </div>
+        </header>
     </div>
+    <section>
+        <div class="main">
+            <img src="./img/logo.png" alt="logo">
+            <div class="searchBox">
+                <input type="text" name="" class="query" value="">
+        <div class="icons">
+            <div><img src="./img/search.png" alt="search"></div>
+           
+        </div>
+        </div>
+        <div class="button">
+            <button class="searchBtn"> 번역 하기</button>
+            
+       
+        </section>
 </body>
 </html>
