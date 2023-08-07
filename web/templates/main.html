@@ -9,78 +9,34 @@
     <script src="static/js/main.js"></script>
 </head>
 <body>
-    <!-- <h1>{{ user_nickname }}님 환영합니다!</h1>
-    <h1>로그인 성공!</h1>
-    <p>메인 화면에 오신 것을 환영합니다.</p>
-    <form action="/main" method="POST",onsubmit="return checkInput();">
-        <div class="trans_text">
-            <h4>텍스트입력</h4>
-            <input type="text" name="trans_text" id="trans_text" placeholder="번역할 글을 입력하세요.">
-            <button type="submit">번역</button>
-        </div>
-    </form>
-    <div class="translated_text">
-        <h4>번역된 텍스트:</h4>
-        <p>{{ translated_text }}</p>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-        {% endwith %}
-        <button onclick="window.location.href='{{ url_for('auth.logout') }}';">로그아웃</button>
-    </div> -->
-
     <div class="top">
         <header>
             <div class="top_menu">
-                <a >{{ user_nickname }}님 환영합니다!</a>
+                <a>{{ user_nickname }}님</a>
                 <a href="./mypage.html">마이페이지</a>
                 <a href="{{ url_for('auth.logout') }}">로그아웃</a>
             </div>
         </header>
     </div>
     <section>
-        <form action="/main" method="POST",onsubmit="return checkInput();">
-        <div class="main">
-            <img src="./static/logo.png" alt="logo">
-            <div class="searchBox">
-                <input type="text" name="trans_text" id="trans_text"  class="query" value="">
-        <div class="icons">
-            <div><img src="./static/search.png" alt="search"></div>
-            
-           
-        </div>
-        </div>
-        <!-- <div class="button">
-            <button type="submit" class="searchBtn"> 번역 하기</button> -->
-            <!-- <script>
-                function handleKeyPress(event) {
-                    // Enter 키의 keyCode는 13
-                    if (event.keyCode === 13) {
-                        var inputText = document.getElementById("inputText").value;{
-                        transBox();}
-                        // alert("입력한 텍스트: " + inputText);
-                    }
-                }
-            </script> -->
-            <div class="translated_text">
-                
-                <!-- <h2>번역된 텍스트:</h2> -->
-                <div class = "transBox">
-                   
-                <h4>{{ translated_text }}</h4>
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <h4 class="alert alert-{{ category }}">{{ message }}</h4>
-                    {% endfor %}
-                {% endif %}
-                {% endwith %}
+        <form action="/main" method="POST" onsubmit="return checkInput();">
+            <div class="main">
+                <img src="./static/logo.png" alt="logo">
+                <div class="searchBox">
+                    <input type="text" name="trans_text" id="trans_text" class="query" value="">
+                    <button type="submit" class="icons">
+                        <img src="./static/search.png" alt="search">
+                    </button>
+                </div>
+                <div class="translated_text">
+                    {% if translated_text %}
+                        <div class="transBox">
+                            <h4>{{ translated_text }}</h4>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-            </div> 
         </form>
-        </section>
+    </section>
 </body>
 </html>

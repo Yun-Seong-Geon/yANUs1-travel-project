@@ -30,6 +30,7 @@ section .searchBox {
     position: relative;
     width: 100%;
     margin-top: 20px;
+    z-index: 1;
 }
 
 section .searchBox .query {
@@ -46,8 +47,11 @@ section .searchBox .query {
 section .searchBox .query:hover {
     box-shadow: 1px 1px 5px rgb(232, 232, 232), -1px -1px 5px rgb(232, 232, 232);
 }
-
-section .searchBox .icons {
+.searchBox{
+    position: relative;
+    width:100%;
+}
+section  .icons {
     position: absolute;
     top: 0;
     width: 100%;
@@ -105,7 +109,7 @@ header{
     top: 30px;
     right: 100px;
     color: white;
-    word-spacing: 50px;
+    word-spacing: 40px;
 }
 
 .top_menu a{color: black;}
@@ -118,7 +122,24 @@ header{
     margin-top: 20px;
 
 }
+.query {
+    width: 100%;
+    padding-right: 30px; /* 이미지 크기에 맞게 조정 */
+}
 
+.icons {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: transparent;
+    border: none;
+}
+
+.icons img {
+    width: 20px; /* 이미지 크기에 맞게 조정 */
+    cursor: pointer;
+    pointer-events: auto;
+}
 /* h2 {
     color: rgb(20, 180, 68);
     font-size: 2em;
