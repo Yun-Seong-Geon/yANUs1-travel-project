@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask import Flask,render_template
 from flask_login import login_required,current_user
 import translate as ts
-from flask import request,flash
+from flask import request,flash,redirect,url_for
 from functools import wraps
 
 views = Blueprint('view',__name__)
@@ -24,5 +24,4 @@ def main():
         else:
             translator = ts.Google_Translator()
             translated_text = translator.translate(text_to_translate, 'en')['tgt_text']
-
     return render_template('main.html', translated_text=translated_text,user_nickname=user_nickname)
