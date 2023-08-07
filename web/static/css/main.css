@@ -105,3 +105,20 @@ header{
 }
 
 .top_menu a{color: black;}
+
+h2 {
+    color: rgb(20, 180, 68);
+    font-size: 2em;
+    position: absolute;
+  }
+p {
+    color: rgb(20, 180, 68);
+    font-size: 2em;
+    position: absolute;
+  }
+
+.alert {
+    color: rgb(20, 180, 68);
+    font-size: 2em;
+    position: absolute;
+  }

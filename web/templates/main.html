@@ -37,24 +37,35 @@
             <div class="top_menu">
                 <a >{{ user_nickname }}님 환영합니다!</a>
                 <a href="./mypage.html">마이페이지</a>
-                <a href="./login.html">로그아웃</a>
+                <a href="{{ url_for('auth.logout') }}">로그아웃</a>
             </div>
         </header>
     </div>
     <section>
+        <form action="/main" method="POST",onsubmit="return checkInput();">
         <div class="main">
-            <img src="./img/logo.png" alt="logo">
+            <img src="./static/logo.png" alt="logo">
             <div class="searchBox">
-                <input type="text" name="" class="query" value="">
+                <input type="text" name="trans_text" id="trans_text"  class="query" value="">
         <div class="icons">
-            <div><img src="./img/search.png" alt="search"></div>
+            <div><img src="./static/search.png" alt="search"></div>
            
         </div>
         </div>
         <div class="button">
-            <button class="searchBtn"> 번역 하기</button>
-            
-       
+            <button type="submit" class="searchBtn"> 번역 하기</button>
+            <div class="translated_text">
+                <h2>번역된 텍스트:</h2>
+                <p>{{ translated_text }}</p>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="alert alert-{{ category }}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div> 
+        </form>
         </section>
 </body>
 </html>

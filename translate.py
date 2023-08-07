@@ -7,7 +7,7 @@ class Google_Translator:
         self.translator = Translator()
         self.result = {'src_text': '', 'src_lang': '', 'tgt_text': '', 'tgt_lang': ''}
  
-    def translate(self, text, lang='en'):
+    def translate(self, text:str, lang='en') ->str:
         translated = self.translator.translate(text, dest=lang)
         self.result['src_text'] = translated.origin
         self.result['src_lang'] = translated.src
