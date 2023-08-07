@@ -17,13 +17,6 @@ class Google_Translator:
         return self.result
 
     
-def translate_eng(text):
-    translator = Google_Translator()
-    result = translator.translate(text,'en')
-    
-    return result['tgt_text']
-        
-    
     
     ## 파이썬 번역 프로그램 
 # if __name__ == '__main__':

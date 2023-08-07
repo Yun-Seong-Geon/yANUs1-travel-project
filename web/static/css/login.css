@@ -1,25 +1,15 @@
-body{
-    /* margin: 0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Noto Sans KR", sans-serif;
-    background-color: #fff !important;  */
-    background-color: red;
   }
-  .block-container {
-    background-color: #fff;
-  }
- 
+  
   a {
     text-decoration: none;
     color: black;
   }
-  .element-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
+  
   li {
     list-style: none;
   }
@@ -30,8 +20,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background: rgba(0, 0, 0, 0.1); */
- 
+    background: rgba(0, 0, 0, 0.1);
   }
   
   .login {
@@ -109,6 +98,3 @@ body{
     font-size: 1.2em;
     letter-spacing: 2px;
   }
-#document {
-  background-color: red;
-}

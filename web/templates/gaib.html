@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko"> <!-- 코드언어 표시 == 웹 표준지침 준수 -->
+<head>
+<meta charset="UTF-8">
+<title>올리브 회원가입</title> 
+<link rel="stylesheet" href={{url_for('static',filename='css/gaib.css')}}>
+<script src="static/js/gaib.js"></script>
+</head>
+<body>
+    <form name="join_form",action="/sign-up" method="POST" onsubmit="return joinform_check();">
+        <div class="wrap">
+            <div class="gaib">
+                <h2>All-Leave</h2>
+                
+                <div class="gaib_nick">
+                    <h5>닉네임</h5>
+                    <input type="text" name="gaib_nick" id="gaib_nick" maxlength="20" placeholder="닉네임을 입력하세요">
+                </div>
+                <div class="gaib_id">
+                    <h5>아이디</h5>
+                    <input type="text" name="gaib_id" id="gaib_id" maxlength="20" placeholder="아이디를 입력하세요">
+                </div>
+                <div class="gaib_pw">
+                    <h5>비밀번호</h5>
+                    <input type="password" name="gaib_pw" id="gaib_pw"  maxlength="20" placeholder="비밀번호를 입력하세요">
+                </div>
+                <div class="gaib_pw1">
+                    <h5>비밀번호 재확인</h5>
+                    <input type="password" name="gaib_pw1" id="gaib_pw1" maxlength="20" placeholder="비밀번호를 재입력하세요">
+                </div>
+
+                <div class="email">
+                    <h5>이메일</h5>
+                    <input type="text" name="email" id="email" maxlength="20" class="check" placeholder="이메일을 입력하세요">
+                    
+                </div>
+
+                <div class="phone">
+                    <h5>전화번호</h5>
+                    <input type="text" name="phone" id="phone" class="check" placeholder="-를 제외하고 입력하세요">
+                    
+                </div>
+    
+                <div class="membergaib">
+                    <input type="submit" value="가입하기">
+                </div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {%if category == 'error'%}
+                                <div class="alert alert-{{ category }}">{{ message }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </form>
+</body>
+</html>
