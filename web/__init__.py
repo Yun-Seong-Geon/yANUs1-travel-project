@@ -4,8 +4,9 @@ from os import path
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
-migrate = Migrate()
+
 db = SQLAlchemy()
+migrate = Migrate()
 DB_name = 'database.db'
 def create_app():
     app = Flask(__name__)
@@ -13,6 +14,7 @@ def create_app():
     app.config['WTF_CSRF_ENABLED'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_name}'
     db.init_app(app)
+    migrate = Migrate(app,db)
     migrate.init_app(app,db)
     
     from .views import views
