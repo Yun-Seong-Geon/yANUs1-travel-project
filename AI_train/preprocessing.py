@@ -13,14 +13,21 @@ class img_processing:
         
     categories = [
         'bigben',
-        'santorini'
+        'santorini',
+        'Matterhorn',
+        'Grand_Canyon',
+        'the_statue_of_liberty'
+
         
     ] # 지역이름 추가하기
         
     def img_label(path,region):
         categories = {
             'bigben' : 0 ,
-            'santorini' : 1
+            'santorini' : 1,
+            'Matterhorn' : 2,
+            'Grand_Canyon' : 3,
+            'the_statue_of_liberty' : 4
         }
         label = []
         images = []
