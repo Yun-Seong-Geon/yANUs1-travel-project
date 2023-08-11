@@ -13,7 +13,7 @@
         <header>
             <div class="top_menu">
                 <a>{{ user_nickname }}님</a>
-                <a href="mypage.html">마이페이지</a>
+                <a href="{{ url_for('view.mypage') }}">마이페이지</a>
                 <a href="{{ url_for('auth.logout') }}">로그아웃</a>
             </div>
         </header>
