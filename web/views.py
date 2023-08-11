@@ -10,7 +10,10 @@ views = Blueprint('view',__name__)
 @views.route("/")
 def home():
     return render_template('login.html')
-
+@views.route("/main/mypage")
+def mypage():
+    user_nickname = current_user.nickname
+    return render_template('mypage.html',user_nickname=user_nickname)
 
 @views.route('/main', methods=['GET', 'POST'])
 @login_required

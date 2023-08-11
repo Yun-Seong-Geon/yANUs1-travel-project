@@ -1,0 +1,141 @@
+ul{list-style: none;}/*리스트 앞에 . 같은거 제거*/
+ a{text-decoration: none;}/*링크에 밑줄 제거*/
+
+ img {
+    max-width: 250px;
+    max-height: 250px;
+  }
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 위쪽으로 정렬 */
+    height: 60px; /* Adjust to your needs */
+  }
+
+.top_menu{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: rgb(0, 0, 0);
+    word-spacing: 30px;
+}
+.top_menu a{
+    color: black;
+}
+.my-container {
+    display: flex;
+    padding: 21px 15px;  
+    height: 25px;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -50%); /*정확히 화면 가운데로 정렬*/
+  }
+.my-container h4{
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    margin: 30px;
+}
+
+.separator {
+    width: 5px;
+    background-color: #662929;
+    margin: 0 10px;
+  }
+
+.page {
+    display: none;
+    text-align: center;
+    height: 150px;
+    padding: 80px;
+}
+.show {
+    display: block;
+  }
+
+  .gaib_pw {
+    width: 100%;
+  }
+  
+  .gaib_pw input {
+    width: 200px;
+    height: 35px;
+    margin: -50px;
+    border-radius: 30px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+  }  
+
+  .gaib_nick {
+    width: 100%;
+  }
+  
+  .gaib_nick input {
+    width: 200px;
+    height: 35px;
+    border-radius: 30px;
+    margin: -50px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+  }
+  .gaib_pw1 {
+    width: 100%;
+  }
+  
+  .gaib_pw1 input {
+    width: 200px;
+    height: 35px;
+    border-radius: 30px;
+    margin: -50px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+  }
+
+  .email{
+    width: 100%;
+  }
+  
+  .email input {
+    width: 200px;
+    height: 35px;
+    margin: -50px;
+    border-radius: 30px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+  }
+  
+  .phone{
+    width: 100%;
+  }
+  
+  .phone input {
+    width: 200px;
+    height: 35px;
+    margin: -50px;
+    border-radius: 30px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+  }
+
+  .membergaib {
+    margin-top: 40px;
+    width: 100%;
+  }
+
+  .membergaib input {
+    width: 230px;
+    height: 40px;
+    border: 0;
+    outline: none;
+    border-radius: 40px;
+    background-color: rgb(20, 180, 68);
+    color: white;
+    font-size: 1em;
+    letter-spacing: 2px;
+  }
