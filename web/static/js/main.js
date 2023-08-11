@@ -4,8 +4,23 @@ function handleKeyPress(event) {
       var inputText = document.getElementById("inputText").value;{
       transBox();}
        alert("입력한 텍스트: " + inputText);
+
+       translateAndDisplayImage(inputText); // 이미지 표시 함수 호출
   }
 }
+
+async function translateAndDisplayImage(translated_text) {
+  const imageUrl = await searchImage(translated_text);
+  const imageContainer = document.getElementById("imageContainer");
+  imageContainer.innerHTML = `<img src="${imageUrl}" alt="이미지">`;
+}
+
+async function searchImage(query) {
+  // 이 부분에서 실제 이미지 검색 API를 사용하여 이미지 URL을 가져오는 코드를 작성해야 합니다.
+  // 여기서는 가상의 이미지 URL을 반환하도록 가정합니다.
+  return "https://via.placeholder.com/300";
+}
+
 function transBox() {
   var box = document.getElementById('transBox');
   if (box.style.display === 'none') {

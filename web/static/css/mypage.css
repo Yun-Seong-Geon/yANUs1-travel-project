@@ -1,0 +1,19 @@
+img {
+    max-width: 250px;
+    max-height: 250px;
+  }
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 위쪽으로 정렬 */
+    height: 100vh; /* Adjust to your needs */
+  }
+
+.top_menu{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: rgb(0, 0, 0);
+    word-spacing: 30px;
+}

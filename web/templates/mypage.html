@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{url_for('static',filename='css/mypage.css')}}>
+    <title>Document</title>
+</head>
+<body>
+    <div class="image-container">
+        <img src="./static/logo.png" alt="logo">
+    </div>
+        <header>
+            <div class="top_menu">
+                <a >{{ user_nickname }}님 환영합니다!</a>
+                <a href="{{ url_for('auth.logout') }}">로그아웃</a>
+            </div>
+        </header>
+    <section>
+        <div>
+            <a> 마이페이지 </a>
+            <a href="./mypage.html">개인정보수정</a>
+            <a href="./mypage.html">검색기록</a>
+        </div>
+    </section>
+</body>
+</html>
