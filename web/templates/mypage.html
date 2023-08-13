@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{url_for('static',filename='css/mypage.css')}}>
+    <title>Document</title>
+</head>
+<body>
+        <div class="image-container">
+            <a href="{{ url_for('view.main') }}">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
+            </a>
+        </div>
+        <div class="top_menu">
+            <a >{{ user_nickname }}님 환영합니다!</a>
+            <a href="{{ url_for('auth.logout') }}">로그아웃</a>
+        </div>
+        <div class="my-container">
+            <h4 class="link">정보수정</h4>  
+            <h2><b>마이페이지</b></h2>        
+            <h4 class="link">검색기록</h4>
+         </div>
+
+         <div class="separator"></div>
+         
+            <div class="page" id="pageContent">
+                <div class="gaib_nick">
+                    <h5>닉네임</h5>
+                    <input type="text" name="gaib_nick" id="gaib_nick"  maxlength="20" placeholder="닉네임을 입력하세요">
+                </div>
+                <div class="gaib_pw">
+                    <h5>비밀번호</h5>
+                    <input type="password" name="gaib_pw" id="gaib_pw"  maxlength="20" placeholder="비밀번호를 입력하세요">
+                </div>
+                <div class="gaib_pw1">
+                    <h5>비밀번호 재확인</h5>
+                    <input type="password" name="gaib_pw1" id="gaib_pw1" maxlength="20" placeholder="비밀번호를 재입력하세요">
+                </div>
+
+                <div class="email">
+                    <h5>이메일</h5>
+                    <input type="text" name="email" id="email" maxlength="20" class="check" placeholder="이메일을 입력하세요">   
+                </div>
+
+                <div class="phone">
+                    <h5>전화번호</h5>
+                    <input type="text" name="phone" id="phone" class="check" placeholder="-를 제외하고 입력하세요">
+                </div>
+
+                <div class="membergaib">
+                    <input type="button"  onclick="joinform_check();" value="수정하기">
+                </div>
+            </div>
+
+        <script src="{{ url_for('static', filename='js/mypage.js') }}"></script>
+</body>
+</html>

@@ -25,7 +25,7 @@
   
   .login {
     width: 30%;
-    height: 500px;
+    height: 70%;
     background: white;
     border-radius: 20px;
     display: flex;
@@ -97,4 +97,8 @@
     color: white;
     font-size: 1.2em;
     letter-spacing: 2px;
+  }
+
+  .login img{
+    max-width: 80%;
   }

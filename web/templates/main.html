@@ -13,7 +13,7 @@
         <header>
             <div class="top_menu">
                 <a>{{ user_nickname }}님</a>
-                <a href="./mypage.html">마이페이지</a>
+                <a href="{{ url_for('view.mypage') }}">마이페이지</a>
                 <a href="{{ url_for('auth.logout') }}">로그아웃</a>
             </div>
         </header>
@@ -23,7 +23,7 @@
             <div class="main">
                 <img src="./static/logo.png" alt="logo">
                 <div class="searchBox">
-                    <input type="text" name="trans_text" id="trans_text" class="query" value="">
+                    <input type="text" name="trans_text" id="trans_text" class="query" value="" onkeypress="handleKeyPress(event)" >
                     <button type="submit" class="icons">
                         <img src="./static/search.png" alt="search">
                     </button>
@@ -33,6 +33,7 @@
                         <div class="transBox">
                             <h4>{{ translated_text }}</h4>
                         </div>
+                        <div id="imageContainer"></div>
                     {% endif %}
                 </div>
             </div>
