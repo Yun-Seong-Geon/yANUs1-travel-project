@@ -5,6 +5,7 @@ import keras
 import matplotlib.pyplot as plt
 from keras_cv.models import StableDiffusion
 import translate as ts
+import ai_fuction as af
 ## 모델은 개인이 다운로드 해야함!
 def plot_images(images, title):
     plt.figure(figsize=(20, 20))
@@ -33,4 +34,5 @@ images_to_generate = 6
 generated_images = gan_model.text_to_image(
     translated_text, batch_size=images_to_generate, unconditional_guidance_scale=40
 )
-plot_images(generated_images, translated_text)
+processed_images = af.preparing(generated_images) 
+af.val()
