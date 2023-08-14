@@ -1,4 +1,5 @@
 #pip install googletrans==4.0.0rc1
+# 번역 구글 api 추가 실행
 from googletrans import Translator
 
 options = ['text', 'file']
