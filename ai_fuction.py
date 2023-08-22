@@ -67,14 +67,14 @@ def val(generated_images, prompts, images_to_generate):
         
 
         
-        # 생성된 이미지를 전처리합니다.
+     
     processed_images = preparing(generated_images)
         
-        # 모델을 통해 예측합니다.
+ 
     predictions = loaded_model.predict(processed_images)
     predicted_classes = np.argmax(predictions, axis=1)
         
-        # 각 이미지와 예측값을 출력합니다.
+ 
     for i in range(images_to_generate):
         plt.figure(figsize=(10, 6))
         plt.imshow(processed_images[i])
