@@ -1,20 +1,28 @@
 #pip install googletrans==4.0.0rc1
+#pip install --upgrade google-cloud-translate
 from googletrans import Translator
+from google.cloud import translate_v2 as translate
+from google.oauth2.credentials import Credentials
 
-options = ['text', 'file']
-class Google_Translator:
-    def __init__(self):
-        self.translator = Translator()
+class GoogleCloudTranslator:
+    def __init__(self, credentials_path: str):
+        creds = Credentials.from_authorized_user_file(credentials_path)
+        self.client = translate.Client(credentials=creds)
         self.result = {'src_text': '', 'src_lang': '', 'tgt_text': '', 'tgt_lang': ''}
- 
-    def translate(self, text:str, lang='en') ->str:
-        translated = self.translator.translate(text, dest=lang)
-        self.result['src_text'] = translated.origin
-        self.result['src_lang'] = translated.src
-        self.result['tgt_text'] = translated.text
-        self.result['tgt_lang'] = translated.dest
- 
+
+    def translate(self, text: str, lang='en') -> dict:
+        translated = self.client.translate(text, target_language=lang)
+
+        self.result['src_text'] = text
+        self.result['src_lang'] = translated['detectedSourceLanguage']
+        self.result['tgt_text'] = translated['translatedText']
+        self.result['tgt_lang'] = lang
+
         return self.result
+
+# 사용 예시:
+
+
 
     
     

@@ -25,14 +25,13 @@ gan_model = StableDiffusion(img_width=img_width, img_height=img_height)
 # 여기서는 예시로 'your_input_data'를 사용하였지만, 실제 입력 데이터로 변경해야 합니다.
 # 만약 텍스트를 입력으로 사용한다면, 해당 텍스트를 적절한 형태로 전처리해야 합니다.
 gan_model.diffusion_model.load_weights(model_path)
-translator = ts.Google_Translator()
+translator = ts.GoogleCloudTranslator('abstract-plane-396801-904742608cb2.json')
 test_to_translate = input('입력해라 : ')
 translated_text = translator.translate(test_to_translate, 'en')['tgt_text']
 prompts = translated_text
-images_to_generate = 6
+images_to_generate = 1
 
 generated_images = gan_model.text_to_image(
     translated_text, batch_size=images_to_generate, unconditional_guidance_scale=40
 )
-processed_images = af.preparing(generated_images) 
 af.val()
