@@ -60,8 +60,8 @@ def preparing(images:list)->list:
     imageArr = imageArr / 255.0
     return imageArr
 
-def val(generated_images, prompts, images_to_generate):
-    model_path = 'D:\MODEL_CNN\BigTransferModel_v2.h5'
+def val(generated_images, prompts):
+    model_path = 'AI_train/BigTransferModel_v2.h5'
     with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
         loaded_model = tf.keras.models.load_model(model_path,compile=False)
         
@@ -72,13 +72,14 @@ def val(generated_images, prompts, images_to_generate):
         
  
     predictions = loaded_model.predict(processed_images)
-    predicted_classes = np.argmax(predictions, axis=1)
-        
+    predicted_class_idx = np.argmax(predictions, axis=1)
+    
+    return categories[predicted_class_idx[0]], generated_images,  
  
-    for i in range(images_to_generate):
-        plt.figure(figsize=(10, 6))
-        plt.imshow(processed_images[i])
-        plt.title(f"Predicted Class: {categories[predicted_classes[i]]},{prompts}")
-        plt.axis('off')
-    plt.show()
+    # for i in range(images_to_generate):
+    #     plt.figure(figsize=(10, 6))
+    #     plt.imshow(processed_images[i])
+    #     plt.title(f"Predicted Class: {categories[predicted_classes[i]]},{prompts}")
+    #     plt.axis('off')
+    # plt.show()
  

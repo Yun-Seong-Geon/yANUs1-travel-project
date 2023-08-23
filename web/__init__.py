@@ -10,7 +10,7 @@ migrate = Migrate()
 DB_name = 'database.db'
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'yun seong geon ai project'
+    app.config['SECRET_KEY'] = 'yANUs1 ai project'
     app.config['WTF_CSRF_ENABLED'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_name}'
     db.init_app(app)

@@ -32,6 +32,8 @@ def logout():
     logout_user()
     return redirect(url_for('view.home'))
 
+
+
 @auth.route('/sign-up',methods=['GET','POST'])
 def sign_up():
     if request.method == 'POST':
@@ -60,6 +62,12 @@ def sign_up():
             flash('이미 사용 중인 전화번호입니다.', category='error')
             return render_template('gaib.html')
         
+        # 중복 전화번호 검사
+        existing_user_nick = User.query.filter_by(nickname=nickname).first()
+        if existing_user_nick:
+            flash('이미 사용 중인 닉네임 입니다.', category='error')
+            return render_template('gaib.html')
+        
         new_user = User(id = gaib_id ,
                         email=email, 
                         nickname=nickname, 
@@ -70,5 +78,5 @@ def sign_up():
         
 
         flash('회원가입 완료',category='success')
-        return redirect(url_for('views.login'))
+        return redirect(url_for('auth.sign_in'))
     return render_template('gaib.html')

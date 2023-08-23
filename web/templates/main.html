@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>검색 페이지</title>
     <link rel="stylesheet" href={{url_for('static',filename='css/main.css')}}>
-    <script src="static/js/main.js"></script>
 </head>
 <body>
+
     <div class="top">
         <header>
             <div class="top_menu">
@@ -18,8 +17,9 @@
             </div>
         </header>
     </div>
+    
     <section>
-        <form action="/main" method="POST" onsubmit="return checkInput();">
+        <form action="/main" method="POST" id="searchForm"  onsubmit="return checkInput();">
             <div class="main">
                 <img src="./static/logo.png" alt="logo">
                 <div class="searchBox">
@@ -27,17 +27,12 @@
                     <button type="submit" class="icons">
                         <img src="./static/search.png" alt="search">
                     </button>
-                </div>
-                <div class="translated_text">
-                    {% if translated_text %}
-                        <div class="transBox">
-                            <h4>{{ translated_text }}</h4>
-                        </div>
-                        <div id="imageContainer"></div>
-                    {% endif %}
+                    {{translated_text}}
                 </div>
             </div>
         </form>
     </section>
+
+    <script src="static/js/main.js"></script>
 </body>
 </html>

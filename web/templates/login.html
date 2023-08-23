@@ -26,7 +26,6 @@
 
             <div class="submit-login">
                 <button type="submit">로그인</button>
-                {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
                         {%if category == 'error'%}
@@ -34,7 +33,6 @@
                         {% endif %}
                     {% endfor %}
                 {% endif %}
-            {% endwith %}
             </div>
             <div class="submit-gaib">
                 <button type="button" onclick="document.location.href='sign-up'">회원가입</button>
