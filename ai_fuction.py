@@ -8,8 +8,13 @@ categories = {
             1 : 'Santorini',
             2 : 'Matterhorn',
             3 : 'Grand_Canyon',
-            4 : 'the_statue_of_liberty'
-            }
+            4 : 'the_statue_of_liberty',
+            5 : 'eiffel_tower' ,
+            6 : 'Gold_gate_bridge', 
+            7 : 'Osakajo', 
+            8 : 'pisa_tower', 
+            9 : 'ayasofya_camii' 
+        }
 # def test(path):
 #     categories = {
 #             0 : 'Bigben' ,
@@ -55,24 +60,25 @@ def preparing(images:list)->list:
     imageArr = imageArr / 255.0
     return imageArr
 
-def val(generated_images):
+def val(generated_images, prompts, images_to_generate):
+    model_path = 'D:\MODEL_CNN\BigTransferModel_v2.h5'
     with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
-        loaded_model = tf.keras.models.load_model('AI_train/BigTransferModel.h5')
+        loaded_model = tf.keras.models.load_model(model_path,compile=False)
         
 
         
-        # 생성된 이미지를 전처리합니다.
-        processed_images = preparing(generated_images)
+     
+    processed_images = preparing(generated_images)
         
-        # 모델을 통해 예측합니다.
-        predictions = loaded_model.predict(processed_images)
-        predicted_classes = np.argmax(predictions, axis=1)
+ 
+    predictions = loaded_model.predict(processed_images)
+    predicted_classes = np.argmax(predictions, axis=1)
         
-        # 각 이미지와 예측값을 출력합니다.
-        for i in range(6):
-            plt.figure(figsize=(10, 6))
-            plt.imshow(processed_images[i])
-            plt.title(f"Predicted Class: {predicted_classes[i]}")
-            plt.axis('off')
-            plt.show()
+ 
+    for i in range(images_to_generate):
+        plt.figure(figsize=(10, 6))
+        plt.imshow(processed_images[i])
+        plt.title(f"Predicted Class: {categories[predicted_classes[i]]},{prompts}")
+        plt.axis('off')
+    plt.show()
  

@@ -1,4 +1,5 @@
 #pip install googletrans==4.0.0rc1
+# 번역 구글 api 추가 실행
 #pip install --upgrade google-cloud-translate
 from googletrans import Translator
 from google.cloud import translate_v2 as translate
