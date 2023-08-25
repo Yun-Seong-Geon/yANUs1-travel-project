@@ -11,15 +11,20 @@
         <img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
     </a>
     
-    <div id="results">
+    <!-- 로딩 화면 -->
+    <div id="loadingContainer">
+        <div class="loading"></div>
+        <p>로딩 중... 이 작업은 5분 정도 소요됩니다.</p>
+    </div>
+    <!-- 결과 화면 (처음에는 숨겨져 있음) -->
+    <div id="results" style="display: none;">
         <h3>인공지능 결과</h3>
         <p id="translationResult"></p>
-        <p>결과: {{ translated_text }}</p>
-        <p>결과: {{ img_cat }}</p>
-        <img id="imageResult" src="data:image/jpeg;base64,{{ imgs }}" alt="이미지 결과">
+        <p>결과: <span id="translatedTextResult">{{ translated_text }}</span></p>
+        <p>결과: <span id="imgCatResult">{{ img_cat }}</span></p>
+        <img id="imageResult" src="" alt="이미지 결과">
         <button onclick="document.location.href='main'" id="backToSearchButton">검색 페이지로 돌아가기</button>
-      
     </div>
-    <script src="static/result.js"></script>
+    <script src="{{ url_for('static', filename='js/result.js') }}"></script>
 </body>
 </html>

@@ -26,13 +26,13 @@ ul{list-style: none;}/*리스트 앞에 . 같은거 제거*/
 .my-container {
     display: flex;
     padding: 21px 15px;  
-    height: 25px;
+    height: 10px;
     position: absolute;
     top: 100px;
     left: 50%;
-    transform: translate(-50%, -50%); /*정확히 화면 가운데로 정렬*/
+    transform: translate(-45%, -55%); /*정확히 화면 가운데로 정렬*/
   }
-.my-container h4{
+.my-container h3{
     color: rgb(0, 0, 0);
     cursor: pointer;
     margin: 30px;
@@ -49,10 +49,31 @@ ul{list-style: none;}/*리스트 앞에 . 같은거 제거*/
     text-align: center;
     height: 150px;
     padding: 80px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    width: 600px;
+    height: 600px;
+    margin-top: 7%;
 }
 .show {
     display: block;
   }
+  .now_pw {
+    width: 100%;
+  }
+  
+  .now_pw input {
+    width: 200px;
+    height: 35px;
+    margin: -50px;
+    border-radius: 30px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+  }  
 
   .gaib_pw {
     width: 100%;
@@ -128,7 +149,7 @@ ul{list-style: none;}/*리스트 앞에 . 같은거 제거*/
     width: 100%;
   }
 
-  .membergaib input {
+  .membergaib button {
     width: 230px;
     height: 40px;
     border: 0;
@@ -139,3 +160,6 @@ ul{list-style: none;}/*리스트 앞에 . 같은거 제거*/
     font-size: 1em;
     letter-spacing: 2px;
   }
+.histories{
+  
+} 

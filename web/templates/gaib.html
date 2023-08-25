@@ -44,7 +44,6 @@
                 <div class="membergaib">
                     <input type="submit" value="가입하기">
                 </div>
-                {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                         {% for category, message in messages %}
                             {%if category == 'error'%}
@@ -52,7 +51,6 @@
                             {% endif %}
                         {% endfor %}
                     {% endif %}
-                {% endwith %}
             </div>
         </div>
     </form>
