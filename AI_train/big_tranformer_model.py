@@ -29,11 +29,8 @@ def train_bit():
     
     #텐서플로우 파이프라인 사용하여 데이터셋 구성
 
-    train_img, train_lab = pp.processing()
-    val_img, val_lab = pp.processing()
-
-    train_ds = tf.data.Dataset.from_tensor_slices((train_img, train_lab)).batch(32)
-    val_ds = tf.data.Dataset.from_tensor_slices((val_img, val_lab)).batch(32)
+    train_ds = tf.data.Dataset.from_tensor_slices((trainX, trainY)).batch(32)
+    val_ds = tf.data.Dataset.from_tensor_slices((valX, valY)).batch(32)
 
     #모델 컴파일
     bit_model.compile(
