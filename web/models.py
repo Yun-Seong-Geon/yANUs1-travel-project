@@ -8,7 +8,7 @@ class User(db.Model,UserMixin):
     password = db.Column(db.String(200))
     phone = db.Column(db.String(11), unique=True, nullable=False)
     notes = db.relationship('Note')
-
+    search_histories = db.relationship('SearchHistory', back_populates='user', cascade="all, delete-orphan")
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -16,3 +16,10 @@ class Note(db.Model):
     content = db.Column(db.String(2000))
     datetime = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
     user_id = db.Column(db.String(120), db.ForeignKey('user.id'))
+    
+class SearchHistory(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    search_text = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    user = db.relationship('User', back_populates='search_histories')

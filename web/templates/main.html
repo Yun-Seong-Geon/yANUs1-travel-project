@@ -7,15 +7,12 @@
     <link rel="stylesheet" href={{url_for('static',filename='css/main.css')}}>
 </head>
 <body>
-
     <div class="top">
-        <header>
-            <div class="top_menu">
-                <a>{{ user_nickname }}님</a>
-                <a href="{{ url_for('view.mypage') }}">마이페이지</a>
-                <a href="{{ url_for('auth.logout') }}">로그아웃</a>
-            </div>
-        </header>
+        <div class="top_menu">
+            <a>{{ user_nickname }}</a>
+            <a href="{{ url_for('view.mypage') }}">MyPage</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </div>
     </div>
     
     <section>
@@ -23,11 +20,9 @@
             <div class="main">
                 <img src="./static/logo.png" alt="logo">
                 <div class="searchBox">
-                    <input type="text" name="trans_text" id="trans_text" class="query" value="" onkeypress="handleKeyPress(event)" >
+                    <input type="text" name="trans_text" id="trans_text" class="query" value="" >
                     <button type="submit" class="icons">
-                        <img src="./static/search.png" alt="search">
-                    </button>
-                    {{translated_text}}
+                    <img src="./static/search.png" alt="search">
                 </div>
             </div>
         </form>

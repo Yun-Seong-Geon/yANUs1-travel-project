@@ -80,3 +80,4 @@ def sign_up():
         flash('회원가입 완료',category='success')
         return redirect(url_for('auth.sign_in'))
     return render_template('gaib.html')
+

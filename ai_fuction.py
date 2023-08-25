@@ -1,8 +1,11 @@
 from tensorflow import keras
 import numpy as np
-import matplotlib.pyplot as plt
 import tensorflow as tf
 import tensorflow_hub as hub
+from PIL import Image
+from io import BytesIO
+import numpy as np
+import base64
 categories = {
             0 : 'Bigben' ,
             1 : 'Santorini',
@@ -15,6 +18,7 @@ categories = {
             8 : 'pisa_tower', 
             9 : 'ayasofya_camii' 
         }
+
 # def test(path):
 #     categories = {
 #             0 : 'Bigben' ,
@@ -54,6 +58,32 @@ categories = {
 #     plt.imshow(imageArr[0])
 #     plt.show()
 
+def numpy_to_image(imgs):
+    # 입력이 np.ndarray 인지 확인
+    # if isinstance(imgs, np.ndarray):
+    #     if imgs.ndim == 4 and imgs.shape[0] == 1:
+    #         imgs = np.squeeze(imgs, axis=0)
+        # if imgs.ndim == 3 and imgs.shape[0] == 1:
+        #     imgs = np.squeeze(imgs, axis=0)
+    if isinstance(imgs, np.ndarray):
+        # if imgs.shape[-1] == 3:  # 3채널인 경우만
+        #     imgs = imgs[..., ::-1]  # RGB를 BGR로 또는 그 반대로 변경
+        
+        # 첫 번째 차원이 1인 경우 제거
+        if imgs.shape[0] == 1:
+            imgs = np.squeeze(imgs, axis=0)
+        
+        # 이미지 정규화 및 데이터 타입 변경
+        # imgs = (imgs * 127.5 + 127.5).astype(np.uint8)
+        # print(imgs.shape)
+
+        # NumPy 배열을 PIL 이미지로 변환
+        img = Image.fromarray(imgs)
+        buffer = BytesIO()
+        img.save(buffer,format='JPEG',quality=100)
+        img_str = base64.b64encode(buffer.getvalue()).decode()
+        return img_str
+
 def preparing(images:list)->list:
     image_list = [np.array(img) for img in images]
     imageArr = np.stack(image_list, axis=0)
@@ -73,8 +103,8 @@ def val(generated_images, prompts):
  
     predictions = loaded_model.predict(processed_images)
     predicted_class_idx = np.argmax(predictions, axis=1)
-    
-    return categories[predicted_class_idx[0]], generated_images,  
+    img = numpy_to_image(generated_images)
+    return categories[predicted_class_idx[0]], img
  
     # for i in range(images_to_generate):
     #     plt.figure(figsize=(10, 6))

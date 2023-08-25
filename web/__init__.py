@@ -32,6 +32,10 @@ def create_app():
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(id)  # primary_key
+    def format_datetime(value, format='%Y-%m-%d %H:%M'):
+        return value.strftime(format)
+
+    app.jinja_env.filters['datetime'] = format_datetime
     
     return app
 
