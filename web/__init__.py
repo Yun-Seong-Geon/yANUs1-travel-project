@@ -1,15 +1,17 @@
-from flask import Flask
+from flask import Flask,send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_migrate import Migrate
 from flask_login import LoginManager
+import os
 
 
 db = SQLAlchemy()
 migrate = Migrate()
 DB_name = 'database.db'
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__,static_folder='static',)
+    
     app.config['SECRET_KEY'] = 'yANUs1 ai project'
     app.config['WTF_CSRF_ENABLED'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_name}'
@@ -35,9 +37,10 @@ def create_app():
     def format_datetime(value, format='%Y-%m-%d %H:%M'):
         return value.strftime(format)
 
-    app.jinja_env.filters['datetime'] = format_datetime
-    
+    app.jinja_env.filters['datetime'] = format_datetime   
     return app
+
+
 
 def create_database(app):
     # db파일이 확인안될 때만 생성

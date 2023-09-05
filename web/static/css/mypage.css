@@ -13,15 +13,26 @@ ul{list-style: none;}/*리스트 앞에 . 같은거 제거*/
     height: 60px; /* Adjust to your needs */
   }
 
-.top_menu{
+  .top_menu {
     position: absolute;
     top: 30px;
     right: 30px;
-    color: rgb(0, 0, 0);
-    word-spacing: 30px;
+    color: white;
+    display: flex;               /* Flexbox를 활용해 내부 아이템들을 가로로 배치합니다. */
+    gap: 20px;                  /* 각 아이템들 사이의 간격을 20px로 조절합니다. */
 }
-.top_menu a{
+
+.top_menu a {
     color: black;
+    text-decoration: none;      /* 링크의 밑줄을 제거합니다. */
+    padding: 5px 10px;          /* 링크 주변에 약간의 패딩을 추가하여 클릭 영역을 확장합니다. */
+    border-radius: 5px;         /* 둥근 테두리를 추가합니다. */
+    font-weight: 500;           /* 글자 굵기를 약간 두껍게 만듭니다. */
+    transition: background 0.6s ease; /* 배경색 변경 시 부드러운 전환 효과를 추가합니다. */
+}
+
+.top_menu a:hover {
+    background: rgba(0, 0, 0, 0.1);  /* 호버 시 약간의 배경색을 추가합니다. */
 }
 .my-container {
     display: flex;
@@ -37,7 +48,10 @@ ul{list-style: none;}/*리스트 앞에 . 같은거 제거*/
     cursor: pointer;
     margin: 30px;
 }
-
+.my-container h1{
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
 .separator {
     width: 5px;
     background-color: #662929;
@@ -45,6 +59,7 @@ ul{list-style: none;}/*리스트 앞에 . 같은거 제거*/
   }
 
 .page {
+    overflow: auto;
     display: none;
     text-align: center;
     height: 150px;
@@ -57,6 +72,19 @@ ul{list-style: none;}/*리스트 앞에 . 같은거 제거*/
     width: 600px;
     height: 600px;
     margin-top: 7%;
+}
+.page1 {
+  text-align: center;
+  height: 150px;
+  padding: 80px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  width: 600px;
+  height: 400px;
+  margin-top: 7%;
 }
 .show {
     display: block;
@@ -160,6 +188,77 @@ ul{list-style: none;}/*리스트 앞에 . 같은거 제거*/
     font-size: 1em;
     letter-spacing: 2px;
   }
-.histories{
+  /* 슬라이드 다운 애니메이션 */
+  .show {
+    display: block;
+    animation: slideDown 0.3s ease-in-out;
+  }
   
-} 
+  @keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .clicked {
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+.search-history-list {
+  list-style-type: none;
+  padding-left: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.history-link {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.history-index {
+  font-weight: bold;
+}
+
+.history-text {
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-timestamp {
+  font-size: 14px;
+  color: #888;
+  justify-self: end;
+}
+
+.history-delete-btn {
+  font-size: 14px;
+  color: #f44336;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  justify-self: end;
+  padding: 0;
+  margin: 0;
+}
+
+.history-delete-btn:hover {
+  text-decoration: none;
+}

@@ -103,16 +103,27 @@ span {
     position: relative;
 } */
 
-.top_menu{
+.top_menu {
     position: absolute;
     top: 30px;
     right: 30px;
     color: white;
-    word-spacing: 40px;
+    display: flex;               /* Flexbox를 활용해 내부 아이템들을 가로로 배치합니다. */
+    gap: 20px;                  /* 각 아이템들 사이의 간격을 20px로 조절합니다. */
 }
 
-.top_menu a{color: black;}
+.top_menu a {
+    color: black;
+    text-decoration: none;      /* 링크의 밑줄을 제거합니다. */
+    padding: 5px 10px;          /* 링크 주변에 약간의 패딩을 추가하여 클릭 영역을 확장합니다. */
+    border-radius: 5px;         /* 둥근 테두리를 추가합니다. */
+    font-weight: 500;           /* 글자 굵기를 약간 두껍게 만듭니다. */
+    transition: background 0.3s ease; /* 배경색 변경 시 부드러운 전환 효과를 추가합니다. */
+}
 
+.top_menu a:hover {
+    background: rgba(0, 0, 0, 0.1);  /* 호버 시 약간의 배경색을 추가합니다. */
+}
 .searchInput{
     border: 2px solid green ;
     border-radius: 5px;

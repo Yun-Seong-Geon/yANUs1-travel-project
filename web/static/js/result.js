@@ -2,6 +2,14 @@ const translationResult = document.getElementById("translationResult");
 const imageResult = document.getElementById("imageResult");
 const imgCatResult = document.getElementById("imgCatResult");
 
+let loadingTextElement = document.getElementById('loadingText');
+let dots = 0;
+
+setInterval(() => {
+    dots = (dots + 1) % 4; // 4까지 증가하고 다시 0으로 돌아간다.
+    let dotsStr = '.'.repeat(dots); // 반복된 점 문자열 생성
+    loadingTextElement.textContent = "로딩 중" + dotsStr;
+}, 500); // 0.5초마다 실행
 // 쿼리 파라미터를 파싱하여 검색어 가져오기
 const urlParams = new URLSearchParams(window.location.search);
 const searchTerm = urlParams.get("search");
@@ -14,7 +22,7 @@ if (searchTerm) {
         // 결과 데이터를 사용하여 요소 업데이트
         translationResult.textContent = data.translated_text;
         imgCatResult.textContent = data.img_cat;
-        imageResult.src = 'data:image/jpeg;base64,' + data.img_src;
+        imageResult.src = data.img_src;
         loadingContainer.style.display = 'none';
         results.style.display = 'block';
     })

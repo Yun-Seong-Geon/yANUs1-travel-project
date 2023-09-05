@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결과 페이지</title>
+    <link rel="stylesheet" href={{url_for('static',filename='css/history_detail.css')}}>
+</head>
+<body>
+    <a href="{{ url_for('view.main') }}">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
+    </a>
+
+    <div id="results" >
+        <h3>인공지능 결과</h3>
+        <p>검색 내용: {{ record.search_text }}</p>
+        <p>결과: {{ record.img_cat }}</p>
+        <img id="imageResult" src= "{{ url_for('static', filename= 'media/'+img_path) }}" alt="이미지 결과">
+        <button onclick="document.location.href='/main/mypage'" id="backToSearchButton">검색기록 페이지로 돌아가기</button>
+    </div>
+</body>
+</html>

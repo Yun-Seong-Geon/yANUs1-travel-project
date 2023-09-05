@@ -20,10 +20,10 @@ class GoogleCloudTranslator:
         self.result['tgt_lang'] = lang
 
         return self.result
- ## 사용 예시   
+## 사용 예시   
 if __name__ == '__main__':
     translator = GoogleCloudTranslator('abstract-plane-396801-904742608cb2.json')
     test_to_translate = input('입력해라 : ')
     translated_text = translator.translate(test_to_translate, 'en')['tgt_text']
     print(translated_text)
-    
+
