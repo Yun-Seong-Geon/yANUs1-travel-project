@@ -4,16 +4,12 @@ import matplotlib.pyplot as plt
 import train_model_v1 as v1
 import tensorflow as tf
 import tensorflow_hub as hub
+import ai_fuction as af
 
 def test(path):
-    categories = {
-            0 : 'Bigben' ,
-            1 : 'Santorini',
-            2 : 'Matterhorn',
-            3 : 'Grand_Canyon',
-            4 : 'the_statue_of_liberty'
+    
+    categories = af.categories
 
-        }
     #모델 이름 입력
     Mname = input('모델이름.h5 입력')
 
