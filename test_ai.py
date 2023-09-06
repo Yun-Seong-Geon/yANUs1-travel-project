@@ -1,4 +1,3 @@
-import keras
 from keras_cv.models import StableDiffusion
 import translate as ts
 import ai_fuction as af
@@ -15,7 +14,7 @@ def gan_model(translated_text: str)-> any:
     Returns:
         any: 생성된 이미지를 출력함
     """
-    img_height = img_width = 256
+    img_height = img_width = 512
     model_path = 'ai_model/finetuned_stable_diffusion_gan_team.h5'
     gan_model = StableDiffusion(img_width=img_width, img_height=img_height)
     gan_model.diffusion_model.load_weights(model_path)
@@ -23,7 +22,7 @@ def gan_model(translated_text: str)-> any:
     generated_images = gan_model.text_to_image(
         translated_text,
         batch_size=images_to_generate,
-        unconditional_guidance_scale=70
+        unconditional_guidance_scale=45
     )
     return generated_images
 

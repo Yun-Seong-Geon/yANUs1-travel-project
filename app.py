@@ -1,5 +1,3 @@
-from flask import Flask,render_template
-import random
 from web import create_app
 
 
