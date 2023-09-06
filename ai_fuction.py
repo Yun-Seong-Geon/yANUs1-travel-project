@@ -5,7 +5,6 @@ import tensorflow_hub as hub
 from PIL import Image
 from io import BytesIO
 import numpy as np
-import base64
 import tensorflow_hub as tfhub
 
 
@@ -33,7 +32,15 @@ categories = {
 }
 
 
-def numpy_to_image(imgs):
+def numpy_to_image(imgs: object)-> object:
+    """_summary_
+    이미지를 입력받으면 넘파이 배열로 변환
+    Args:
+        imgs (object): 이미지 객체
+
+    Returns:
+        object: 이미지 객체
+    """
     if isinstance(imgs, np.ndarray):
         # 첫 번째 차원이 1인 경우 제거
         if imgs.shape[0] == 1:
@@ -47,12 +54,29 @@ def numpy_to_image(imgs):
             return output.getvalue()
 
 def preparing(images:list)->list:
+    """_summary_
+    넘파이 배열을 입력받으면 이미지의 사이즈를 조절하는 함수
+    Args:
+        images (list): 이미지
+
+    Returns:
+        list: 이미지
+    """
     image_list = [np.array(img) for img in images]
     imageArr = np.stack(image_list, axis=0)
     imageArr = imageArr / 255.0
     return imageArr
 
-def val(generated_images):
+def predicts(generated_images: object)->object:
+    """요약:
+    이미지를 입력받으면 그이미지를 CNN모델에서 예측하는 함수
+    
+    Args:
+        generated_images (object): 이미지 객체
+
+    Returns:
+        object: 예측된 결과 list와 이미지 객체
+    """
     model_path = 'transfer_AI_MODEL/BigTransferModel1'
     with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
         loaded_model = tf.keras.models.load_model(model_path,compile=False)
@@ -64,5 +88,3 @@ def val(generated_images):
     predicted_class_idx = np.argmax(predictions, axis=1)
     img = numpy_to_image(generated_images)
     return categories[predicted_class_idx[0]], img
-
-

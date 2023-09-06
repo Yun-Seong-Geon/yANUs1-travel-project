@@ -2,6 +2,7 @@ absl-py==1.4.0
 alembic==1.11.2
 altair==5.0.1
 array-record==0.4.1
+astroid==2.15.6
 astunparse==1.6.3
 attrs==23.1.0
 bcrypt==4.0.1
@@ -14,6 +15,7 @@ click==8.1.6
 contourpy==1.1.0
 cycler==0.11.0
 decorator==5.1.1
+dill==0.3.7
 dm-tree==0.1.8
 etils==1.4.1
 extra-streamlit-components==0.1.56
@@ -33,7 +35,6 @@ google-cloud-core==2.3.3
 google-cloud-translate==3.12.0
 google-pasta==0.2.0
 googleapis-common-protos==1.60.0
-googletrans==4.0.0rc1
 grpcio==1.57.0
 grpcio-status==1.57.0
 h11==0.9.0
@@ -47,6 +48,7 @@ hyperframe==5.2.0
 idna==2.10
 importlib-metadata==6.8.0
 importlib-resources==6.0.1
+isort==5.12.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
 joblib==1.3.2
@@ -56,6 +58,7 @@ keras==2.13.1
 keras-core==0.1.4
 keras-cv==0.6.1
 kiwisolver==1.4.4
+lazy-object-proxy==1.9.0
 libclang==16.0.6
 Mako==1.2.4
 Markdown==3.4.4
@@ -70,6 +73,7 @@ opt-einsum==3.3.0
 packaging==23.1
 pandas==2.0.3
 Pillow==10.0.0
+platformdirs==3.10.0
 promise==2.3
 proto-plus==1.22.3
 protobuf==4.24.1
@@ -80,6 +84,7 @@ pyasn1-modules==0.3.0
 pydeck==0.8.0
 Pygments==2.15.1
 PyJWT==2.8.0
+pylint==2.17.5
 Pympler==1.0.1
 pyparsing==3.0.9
 python-dateutil==2.8.2
@@ -110,11 +115,11 @@ tensorflow==2.13.0
 tensorflow-datasets==4.9.2
 tensorflow-estimator==2.13.0
 tensorflow-hub==0.14.0
-tensorflow-macos==2.13.0
 tensorflow-metadata==1.14.0
 termcolor==2.3.0
 threadpoolctl==3.2.0
 toml==0.10.2
+tomlkit==0.12.1
 toolz==0.12.0
 tornado==6.3.2
 tqdm==4.66.1

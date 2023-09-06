@@ -71,14 +71,6 @@ def mypage()-> object:
 @views.route('/delete-history/<int:record_id>', methods=['DELETE'])
 @login_required
 def delete_history(record_id):
-    """_summary_
-
-    Args:
-        record_id (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
     record = SearchHistory.query.get(record_id)
     if not record:
         return jsonify({"message": "Record not found!"}), 404
@@ -139,6 +131,11 @@ MEDIA_FOLDER = os.path.join('web/static/media')
 @views.route('/get_prediction')
 @login_required
 def get_prediction():
+    """_summary_
+        이미지를 예측하는 함수
+    Returns:
+        _type_: json 파일
+    """
     if not os.path.exists(MEDIA_FOLDER):  # Check if media directory exists
         os.makedirs(MEDIA_FOLDER)  # If not, create it\
 
@@ -150,7 +147,7 @@ def get_prediction():
 
     # 예측 진행
     translated_text = search_term
-    img_cat, img_data_raw = af.val(ai.gan_model(translated_text))
+    img_cat, img_data_raw = af.predicts(ai.gan_model(translated_text))
     # raw 이미지 데이터를 실제 파일로 저장
     filename = secure_filename(f"{search_term}.jpeg")
     image_path = os.path.join(MEDIA_FOLDER, filename)
