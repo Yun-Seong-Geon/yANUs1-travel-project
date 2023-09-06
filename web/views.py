@@ -142,7 +142,7 @@ def get_prediction():
 
     # 예측 진행
     translated_text = search_term
-    img_cat, img_data_raw = af.val(ai.gan_model(translated_text))
+    img_cat, img_data_raw = af.predicts(ai.gan_model(translated_text))
     # raw 이미지 데이터를 실제 파일로 저장
     filename = secure_filename(f"{search_term}.jpeg")
     image_path = os.path.join(MEDIA_FOLDER, filename)
