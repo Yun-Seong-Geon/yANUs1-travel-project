@@ -8,10 +8,24 @@ from google.auth.exceptions import DefaultCredentialsError
 
 class GoogleCloudTranslator:
     def __init__(self, credentials_path: str):
+        """_summary_
+            구글클라우드 번역기 api 생성자
+        Args:
+            credentials_path (str): 패스경로
+        """
         self.client = translate.Client.from_service_account_json(credentials_path)
         self.result = {'src_text': '', 'src_lang': '', 'tgt_text': '', 'tgt_lang': ''}
 
     def translate(self, text: str, lang='en') -> dict:
+        """_summary_
+
+        Args:
+            text (str): 번역할 텍스트
+            lang (str, optional): _description_. Defaults to 'en'. 영어가 기본
+
+        Returns:
+            dict: _description_
+        """
         translated = self.client.translate(text, target_language=lang)
 
         self.result['src_text'] = text
