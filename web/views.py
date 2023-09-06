@@ -71,14 +71,6 @@ def mypage()-> object:
 @views.route('/delete-history/<int:record_id>', methods=['DELETE'])
 @login_required
 def delete_history(record_id):
-    """_summary_
-
-    Args:
-        record_id (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
     record = SearchHistory.query.get(record_id)
     if not record:
         return jsonify({"message": "Record not found!"}), 404

@@ -5,7 +5,6 @@ import tensorflow_hub as hub
 from PIL import Image
 from io import BytesIO
 import numpy as np
-import base64
 import tensorflow_hub as tfhub
 
 
@@ -47,12 +46,13 @@ def numpy_to_image(imgs):
             return output.getvalue()
 
 def preparing(images:list)->list:
+
     image_list = [np.array(img) for img in images]
     imageArr = np.stack(image_list, axis=0)
     imageArr = imageArr / 255.0
     return imageArr
 
-def val(generated_images):
+def val(generated_images: object)->object:
     model_path = 'transfer_AI_MODEL/BigTransferModel1'
     with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
         loaded_model = tf.keras.models.load_model(model_path,compile=False)
@@ -64,5 +64,3 @@ def val(generated_images):
     predicted_class_idx = np.argmax(predictions, axis=1)
     img = numpy_to_image(generated_images)
     return categories[predicted_class_idx[0]], img
-
-
