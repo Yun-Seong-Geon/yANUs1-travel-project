@@ -131,6 +131,11 @@ MEDIA_FOLDER = os.path.join('web/static/media')
 @views.route('/get_prediction')
 @login_required
 def get_prediction():
+    """_summary_
+        이미지를 예측하는 함수
+    Returns:
+        _type_: json 파일
+    """
     if not os.path.exists(MEDIA_FOLDER):  # Check if media directory exists
         os.makedirs(MEDIA_FOLDER)  # If not, create it\
 
