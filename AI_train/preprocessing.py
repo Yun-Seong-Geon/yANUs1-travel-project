@@ -39,8 +39,6 @@ class img_processing:
         return NEW_X, NEW_Y 
 
 def processing():
-
-
     images = np.empty((0,256,256,3)) # 배열 생성
     labels = np.empty(0) # 배열생성
 

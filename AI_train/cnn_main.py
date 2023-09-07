@@ -1,7 +1,4 @@
 # import train_model_v1 as v1
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-from tensorflow import keras
 import test_model_v1 as tt
 # import big_tranformer_model as bt
 
@@ -9,8 +6,8 @@ import test_model_v1 as tt
 
 
 
-def main():    
-
+def main():  
+    
     num = int(input('Train Model[0] / Test Model[1] / BIT Modle Train[2]:'))
 
     if num == 0:

@@ -1,12 +1,7 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
 import tensorflow as tf
-from tensorflow import keras
 import tensorflow_hub as hub
 from keras.callbacks import EarlyStopping
 import train_model_v1 as v1
-import preprocessing as pp
 
 
 def create_bit_model():
