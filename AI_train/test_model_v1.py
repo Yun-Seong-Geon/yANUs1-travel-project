@@ -44,14 +44,3 @@ def test(path:str):
     plt.title(categories[int(pred_labels)])
     plt.imshow(imageArr[0])
     plt.show()
-
-def preparing(images):
-    image_list = [np.array(img) for img in images]
-    imageArr = np.stack(image_list, axis=0)
-    imageArr = imageArr / 255.0
-    return imageArr
-
-def val():
-    with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
-        loaded_model = tf.keras.models.load_model('AI_train/BigTransferModel.h5')
-    

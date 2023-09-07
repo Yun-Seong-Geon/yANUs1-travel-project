@@ -9,6 +9,7 @@ import preprocessing as pp
 
 #CNN 모델 1
 def create_model():
+    #todo 모델 클래스화
     model = keras.Sequential()
 
     model.add(layers.Conv2D(64, (15, 15), activation='relu',input_shape=(256,256,3),padding='same',strides=(3,3)))
