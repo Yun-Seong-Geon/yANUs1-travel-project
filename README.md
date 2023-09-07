@@ -3,9 +3,6 @@ yANUS 동아리 1팀 프로젝트 입니다.
 
 ```
 yANUs1-travel-project_main
-├─ .DS_Store
-├─ .vscode
-│  └─ settings.json
 ├─ AI_train
 │  ├─ .BigTransferModel.h5.icloud
 │  ├─ .BigTransferModel_v2.h5.icloud
@@ -18,17 +15,6 @@ yANUs1-travel-project_main
 │  ├─ preprocessing.py
 │  ├─ test_model_v1.py
 │  └─ train_model_v1.py
-├─ __pycache__
-│  ├─ ai_fuction.cpython-311.pyc
-│  ├─ app.cpython-311.pyc
-│  ├─ front.cpython-311.pyc
-│  ├─ frontDef.cpython-311.pyc
-│  ├─ front_login.cpython-311.pyc
-│  ├─ front_register.cpython-311.pyc
-│  ├─ test_ai.cpython-311.pyc
-│  ├─ translate.cpython-311.pyc
-│  └─ utils.cpython-311.pyc
-├─ abstract-plane-396801-904742608cb2.json
 ├─ adobe.py
 ├─ ai_fuction.py
 ├─ ai_model
@@ -40,8 +26,6 @@ yANUs1-travel-project_main
 ├─ media
 ├─ migrations
 │  ├─ README
-│  ├─ __pycache__
-│  │  └─ env.cpython-311.pyc
 │  ├─ alembic.ini
 │  ├─ env.py
 │  ├─ script.py.mako
@@ -54,7 +38,6 @@ yANUs1-travel-project_main
 ├─ transfer_AI_MODEL
 │  ├─ .DS_Store
 │  └─ BigTransferModel1
-│     ├─ .DS_Store
 │     ├─ assets
 │     ├─ fingerprint.pb
 │     ├─ keras_metadata.pb
@@ -64,17 +47,10 @@ yANUs1-travel-project_main
 │        └─ variables.index
 ├─ translate.py
 └─ web
-   ├─ .DS_Store
    ├─ __init__.py
-   ├─ __pycache__
-   │  ├─ __init__.cpython-311.pyc
-   │  ├─ auth.cpython-311.pyc
-   │  ├─ models.cpython-311.pyc
-   │  └─ views.cpython-311.pyc
    ├─ auth.py
    ├─ models.py
    ├─ static
-   │  ├─ .DS_Store
    │  ├─ css
    │  │  ├─ gaib.css
    │  │  ├─ history_detail.css
