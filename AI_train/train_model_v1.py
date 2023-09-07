@@ -1,16 +1,10 @@
-import numpy as np
-import tensorflow as tf
 from tensorflow import keras
 from sklearn.model_selection import train_test_split
 from keras import layers
-from keras.utils import plot_model
 from keras.layers import BatchNormalization
 from keras.layers import MaxPooling2D
-import os
 import matplotlib.pyplot as plt
 import preprocessing as pp
-import h5py
-from keras.models import load_model
 
 
 #CNN 모델 1
@@ -43,6 +37,15 @@ def create_model():
 
 #데이터 나누기
 def split():
+    """_summary_
+    이미지와 라벨을 전처리 함수로 불러오고 train,test 데이터를 분리하는 함수
+    Returns:
+        list: 
+            trainX (list): 훈련 이미지 데이터
+            testX (list): 테스트 이미지 데이터
+            trainY (list): 훈련 라벨 데이터
+            testY (list): 테스트 라벨 데이터
+    """    
     images,labels=pp.processing()
     trainX, testX, trainY, testY = train_test_split(images, labels, test_size=0.1, random_state=25, stratify = labels)
     trainX = trainX / 255
@@ -52,7 +55,9 @@ def split():
 
 #모델 훈련
 def train():
-    
+    """_summary_
+    모델 훈련 진행하여 모델을 저장하는 함수
+    """    
     #모델 불러오기
     model = create_model()
 
@@ -79,5 +84,3 @@ def train():
     #모델 저장
     model_filename = 'train_model_v1.h5'
     model.save(model_filename)
-
-

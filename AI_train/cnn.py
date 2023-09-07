@@ -3,6 +3,9 @@ from tensorflow import keras
 import os
 import ai_fuction as af
 class img_processing:
+    """_summary_
+    이미지 전처리 클래스
+    """    
     def img_label(path,region):
         categories = af.categories
         label = []
@@ -32,12 +35,10 @@ def start():
 
     for cate in categories:
         images,labels = img_processing.concat(cate,cate,images,labels)
-    print(images.shape,labels.shape)
 
 if __name__ == '__main__':  
     start()
 
-    
 
 
 

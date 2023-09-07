@@ -6,8 +6,13 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import ai_fuction as af
 
-def test(path):
-    
+def test(path:str):
+    """_summary_
+    모델 파일 경로를 지정하고 모델을 선택하고 모델을 불러와서 테스트를 진행한다.
+
+    Args:
+        path (str): 모델 경로
+    """
     categories = af.categories
 
     #모델 이름 입력
@@ -39,6 +44,7 @@ def test(path):
     plt.title(categories[int(pred_labels)])
     plt.imshow(imageArr[0])
     plt.show()
+
 def preparing(images):
     image_list = [np.array(img) for img in images]
     imageArr = np.stack(image_list, axis=0)
