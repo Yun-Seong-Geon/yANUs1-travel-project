@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import train_model_v1 as v1
 import tensorflow as tf
 import tensorflow_hub as hub
-import ai_fuction as af
 
 def test(path:str):
     """_summary_
@@ -13,7 +12,28 @@ def test(path:str):
     Args:
         path (str): 모델 경로
     """
-    categories = af.categories
+    categories = {
+    0: 'bigben',
+    1: 'santorini',
+    2: 'Matterhorn',
+    3: 'Grand_Canyon',
+    4: 'the_statue_of_liberty',
+    5: 'eiffel_tower',
+    6: 'Gold_gate_bridge',
+    7: 'Osakajo',
+    8: 'pisa_tower',
+    9: 'ayasofya_camii',
+    10: 'Donggung_Palace_and_Wolji_Pond',
+    11: 'Gobi_Desert',
+    12: 'Iceland_Aurora',
+    13: 'kuta_beach',
+    14: 'Machu_Picchu',
+    15: 'Niagara_falls',
+    16: 'Pyramid',
+    17: 'Sydney_Opera_House',
+    18: 'Torre_pendente_di_Pisa',
+    19: 'Wat_Chedi_Luang'
+}
 
     #모델 이름 입력
     Mname = input('모델이름.h5 입력')

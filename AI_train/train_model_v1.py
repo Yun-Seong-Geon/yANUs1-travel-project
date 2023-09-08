@@ -1,40 +1,88 @@
-from tensorflow import keras
+import tensorflow as tf
+from keras import layers
 from sklearn.model_selection import train_test_split
 from keras import layers
-from keras.layers import BatchNormalization
-from keras.layers import MaxPooling2D
 import matplotlib.pyplot as plt
 import preprocessing as pp
 
 
 #CNN 모델 1
-def create_model():
-    #todo 모델 클래스화
-    model = keras.Sequential()
+# def create_model():
+#     model = keras.Sequential()
 
-    model.add(layers.Conv2D(64, (15, 15), activation='relu',input_shape=(256,256,3),padding='same',strides=(3,3)))
-    model.add(BatchNormalization())
-    model.add(MaxPooling2D(pool_size=(3,3)))
+#     model.add(layers.Conv2D(64, (15, 15), activation='relu',input_shape=(256,256,3),padding='same',strides=(3,3)))
+#     model.add(BatchNormalization())
+#     model.add(MaxPooling2D(pool_size=(3,3)))
 
-    model.add(layers.Conv2D(64, (7, 7), activation='relu', padding='same',strides=(2,2)))
-    model.add(BatchNormalization())
-    model.add(MaxPooling2D(pool_size=(2,2)))
+#     model.add(layers.Conv2D(64, (7, 7), activation='relu', padding='same',strides=(2,2)))
+#     model.add(BatchNormalization())
+#     model.add(MaxPooling2D(pool_size=(2,2)))
 
-    model.add(layers.Conv2D(32, (5, 5), activation='relu', padding='same'))
-    model.add(BatchNormalization())
-    model.add(MaxPooling2D(pool_size=(2,2)))
+#     model.add(layers.Conv2D(32, (5, 5), activation='relu', padding='same'))
+#     model.add(BatchNormalization())
+#     model.add(MaxPooling2D(pool_size=(2,2)))
 
-    model.add(layers.Conv2D(16, (3, 3), activation='relu', padding='same'))
-    model.add(BatchNormalization())
-    model.add(MaxPooling2D(pool_size=(2,2)))
-    model.add(layers.Dropout(0.2))
+#     model.add(layers.Conv2D(16, (3, 3), activation='relu', padding='same'))
+#     model.add(BatchNormalization())
+#     model.add(MaxPooling2D(pool_size=(2,2)))
+#     model.add(layers.Dropout(0.2))
 
-    #DNN
-    model.add(layers.Flatten())
-    model.add(layers.Dense(512, activation='relu'))
-    model.add(layers.Dense(5, activation='softmax'))
+#     #DNN
+#     model.add(layers.Flatten())
+#     model.add(layers.Dense(512, activation='relu'))
+#     model.add(layers.Dense(5, activation='softmax'))
 
-    return model
+#     return model
+
+class CustomCnnModel(tf.keras.Model):
+    """_summary_
+    CNN 모델 선언
+    Usage:
+        모델을 인스턴스화하고 훈련 전에 컴파일을 진행
+    """    
+    def __init__(self):
+        super(CustomCnnModel, self).__init__()
+
+        self.conv1 = layers.Conv2D(64, (15, 15), activation='relu', input_shape=(256, 256, 3), padding='same', strides=(3, 3))
+        self.conv2 = layers.Conv2D(64, (7, 7), activation='relu', padding='same', strides=(2, 2))
+        self.conv3 = layers.Conv2D(32, (5, 5), activation='relu', padding='same')
+        self.conv4 = layers.Conv2D(16, (3, 3), activation='relu', padding='same')
+
+        self.batch_norm = layers.BatchNormalization()
+
+        self.max_pool1 = layers.MaxPooling2D(pool_size=(3, 3))
+        self.max_pool2 = layers.MaxPooling2D(pool_size=(2, 2))
+        self.max_pool3 = layers.MaxPooling2D(pool_size=(2, 2))
+        self.max_pool4 = layers.MaxPooling2D(pool_size=(2, 2))
+        self.dropout = layers.Dropout(0.2)
+
+        self.flatten = layers.Flatten()
+        self.dense1 = layers.Dense(512, activation='relu')
+        self.dense2 = layers.Dense(5, activation='softmax')
+
+    def call(self, inputs):
+        x = self.conv1(inputs)
+        x = self.batch_norm(x)
+        x = self.max_pool1(x)
+
+        x = self.conv2(x)
+        x = self.batch_norm(x)
+        x = self.max_pool2(x)
+
+        x = self.conv3(x)
+        x = self.batch_norm(x)
+        x = self.max_pool3(x)
+
+        x = self.conv4(x)
+        x = self.batch_norm(x)
+        x = self.max_pool4(x)
+        x = self.dropout(x)
+
+        x = self.flatten(x)
+        x = self.dense1(x)
+        x = self.dense2(x)
+
+        return x
 
 #데이터 나누기
 def split():
@@ -60,7 +108,7 @@ def train():
     모델 훈련 진행하여 모델을 저장하는 함수
     """    
     #모델 불러오기
-    model = create_model()
+    model = CustomCnnModel()
 
     #데이터 분리 / stratify를 사용하는 이유는 현재 두 개의 데이터셋의 개수가 균일하지 않기 때문 > 빅벤 100 언저리, 산토리니 400언저리
     trainX, testX, trainY, testY = split()

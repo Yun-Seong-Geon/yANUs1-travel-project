@@ -1,17 +1,12 @@
-# import train_model_v1 as v1
+import train_model_v1 as v1
 import test_model_v1 as tt
 # import big_tranformer_model as bt
 
-#모델 훈련
-
-
-
-def main():  
-    
+def main():    
     num = int(input('Train Model[0] / Test Model[1] / BIT Modle Train[2]:'))
 
     if num == 0:
-        # v1.train()
+        v1.train()
         # print('다음 행동을 선택하세요.')
         # main()
         pass

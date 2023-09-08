@@ -29,6 +29,7 @@ class img_processing:
         'Wat_Chedi_Luang'
     ] # 지역이름 추가하기
     
+    
     def img_label(path,region:(str,dict))->(list,list):
         """_summary_
         이미지 배열과 라벨 배열 생성하는 함수
@@ -64,7 +65,8 @@ class img_processing:
         }
         label = []
         images = []
-
+        
+        
         img_file = os.listdir(path)
         
         for img in img_file:
@@ -102,6 +104,8 @@ def processing():
     images = np.empty((0,256,256,3)) # 배열 생성
     labels = np.empty(0) # 배열생성
 
+    #학습 시 img_processing.concat 첫번째 인자에서
+    #f'data_set/'+ 처럼 이미지 파일 경로 추가 필요함
     for cate in img_processing.categories:
         images,labels = img_processing.concat(cate,cate,images,labels)
 
