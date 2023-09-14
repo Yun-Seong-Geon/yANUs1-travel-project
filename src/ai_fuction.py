@@ -62,8 +62,13 @@ def preparing(images:list)->list:
     Returns:
         list: 이미지
     """
-    image_list = [np.array(img) for img in images]
-    imageArr = np.stack(image_list, axis=0)
+    resized_images = []
+    for img in images:
+        pil_img = Image.fromarray(img)  # numpy 배열을 PIL Image로 변환
+        resized_img = pil_img.resize((256, 256))  # 크기를 256x256으로 조절
+        resized_images.append(np.array(resized_img))  # PIL Image를 numpy 배열
+
+    imageArr = np.stack(resized_images, axis=0)
     imageArr = imageArr / 255.0
     return imageArr
 
@@ -77,7 +82,7 @@ def predicts(generated_images: object)->object:
     Returns:
         object: 예측된 결과 list와 이미지 객체
     """
-    model_path = 'transfer_AI_MODEL/BigTransferModel1'
+    model_path = 'AI_train/BigTransferModel_v2.h5'
     with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
         loaded_model = tf.keras.models.load_model(model_path,compile=False)
 

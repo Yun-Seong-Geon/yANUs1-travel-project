@@ -15,9 +15,7 @@ def gan_model(translated_text: str)-> any:
         any: 생성된 이미지를 출력함
     """
     img_height = img_width = 512
-    model_path = 'ai_model/finetuned_stable_diffusion_gan_team.h5'
-    gan_model = StableDiffusion(img_width=img_width, img_height=img_height)
-    gan_model.diffusion_model.load_weights(model_path)
+    gan_model = StableDiffusion(img_width=img_width, img_height=img_height,jit_compile=True)
     images_to_generate = 1
     generated_images = gan_model.text_to_image(
         translated_text,

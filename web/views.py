@@ -1,10 +1,10 @@
 from flask import Blueprint, session, jsonify, send_from_directory
 from flask import render_template
 from flask_login import login_required, current_user
-import translate as ts
+from src import translate as ts
 from flask import request, flash, redirect, url_for
-import test_ai as ai
-import ai_fuction as af
+from src import test_ai as ai
+from src import ai_fuction as af
 from . import db
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename

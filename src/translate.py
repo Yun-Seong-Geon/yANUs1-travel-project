@@ -41,3 +41,4 @@ if __name__ == '__main__':
     translated_text = translator.translate(test_to_translate, 'en')['tgt_text']
     print(translated_text)
 
+

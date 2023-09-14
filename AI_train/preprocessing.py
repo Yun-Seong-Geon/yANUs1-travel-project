@@ -30,7 +30,7 @@ class img_processing:
     ] # 지역이름 추가하기
     
     
-    def img_label(path,region:(str,dict))->(list,list):
+    def img_label(path,region:(str))->list:
         """_summary_
         이미지 배열과 라벨 배열 생성하는 함수
         Args:
@@ -40,7 +40,8 @@ class img_processing:
         Returns:
             list: 이미지 배열
             list: 이미지 라벨 배열
-        """        
+        """
+                
         categories = {
             'bigben': 0,
             'santorini': 1,
@@ -77,7 +78,7 @@ class img_processing:
         
         return images,label
 
-    def concat(path,region,X,Y:(str,dict,list,list))->(list, list):
+    def concat(path:str,region:dict,X:list,Y:list)-> list:
         """_summary_
         'X' 배열과 이미지 데이터 연결, Y배열과 라벨 데이터를 연결하는 함수
         Args:
@@ -111,8 +112,8 @@ def processing():
 
     return images,labels
 
-if __name__ == '__main__':  
-    images,labels = processing()
-    print(images.shape,labels.shape)
+
+
+
 
 
