@@ -172,7 +172,7 @@ def get_prediction():
     session['predicted_data'] = result
     session['search_term'] = search_term
 
-    return jsonify(result)
+    return jsonify(result)## hello
 
 
 @views.route('/media/<filename>')
