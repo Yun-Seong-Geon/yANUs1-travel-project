@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href={{url_for('static',filename='css/information.css')}}>
+    
+</head>
+<body>
+    <img src="./img/logo.png" alt="logo">
+
+    <!-- "이전" 화살표 -->
+    <img id="prevArrow" src="./img/left.png" alt="이전" class="arrow">
+        
+    <!-- "다음" 화살표 -->
+    <img id="nextArrow" src="./img/right.png" alt="다음" class="arrow">  
+    
+    <div id="information" class="slideshow">
+        <h1>@정보</h1>
+        <p id="translationResult"></p>
+        
+        <div class="left-pane">
+            <div class="content">
+                <h3>@설명</h3>
+
+                <img src="https://placekitten.com/200/300" alt="고양이 이미지" class="contentimg">
+                <p>여기에 설명 내용을 입력하세요.여기에 설명 내용을 입력하세요.여기에 설명 내용을 입력하세요.</p>
+                
+            </div>
+        </div>
+        
+        
+    
+        <!-- 오른쪽 칸: 위치 정보 -->
+        <div class="right-pane">
+            <h3>@위치</h3>
+            <p>여기에 위치 정보를 입력하세요.</p>
+        </div>
+    </div>
+    <!-- 슬라이드에 표시할 여행 정보 -->
+    <div id="travelInfo" class="slideshow">
+        <h1>@여행추천</h1>
+        <div class="left-pane">
+            <h3>여행코스추천</h3>
+            <p>추천하는 여행코스</p>
+        </div>
+    
+        <!-- 오른쪽 칸: 위치 정보 -->
+        <div class="right-pane">
+            <h3>여행사연결</h3>
+            <p>여행사 연결을 해드릴게용</p>
+        </div>
+        
+    </div>
+
+    <button id="backButton"><b>이전 화면으로 돌아가기</b></button>
+    <button id="backToSearchButton"><b>검색 페이지로 돌아가기</b></button>
+</body>
+<script src="static/js/information.js"></script>
+</html>

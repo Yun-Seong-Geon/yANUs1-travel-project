@@ -5,7 +5,7 @@ from lxml import html
 #pip install lxml
 
 # 정보 스크래핑
-def scrape_tourist_site_info(tourist_site:str)->str:
+def scrap_tourist_site_info(tourist_site:str)->str:
     """_summary_
 
     Args:
@@ -33,10 +33,11 @@ def scrape_tourist_site_info(tourist_site:str)->str:
     
     return description
 
+if __name__ == "__main__":
 # 관광지 이름 입력
-tourist_site = input("검색할 관광지 이름을 입력하세요: ")
+    tourist_site = input("검색할 관광지 이름을 입력하세요: ")
 
-# 관광지 정보 스크래핑
-tourist_site_info = scrape_tourist_site_info(tourist_site)
-print("관광지 정보:")
-print(tourist_site_info)
+    # 관광지 정보 스크래핑
+    tourist_site_info = scrap_tourist_site_info(tourist_site)
+    print("관광지 정보:")
+    print(tourist_site_info)

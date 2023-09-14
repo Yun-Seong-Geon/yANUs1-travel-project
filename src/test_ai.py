@@ -16,7 +16,7 @@ def gan_model(translated_text: str)-> any:
     """
     img_height = img_width = 512
     gan_model = StableDiffusion(img_width=img_width, img_height=img_height,jit_compile=True)
-    images_to_generate = 1
+    images_to_generate = 3
     generated_images = gan_model.text_to_image(
         translated_text,
         batch_size=images_to_generate,

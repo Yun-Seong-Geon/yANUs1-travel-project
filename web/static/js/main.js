@@ -1,7 +1,7 @@
 function checkInput(){
-  const searchForm = document.getElementById("searchForm");
-  const searchInput = document.getElementById("trans_text");
-  searchForm.addEventListener("submit", function(event) {
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("trans_text");
+    searchForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const searchTerm = searchInput.value;

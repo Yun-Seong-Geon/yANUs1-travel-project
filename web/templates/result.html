@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,8 +23,59 @@
         <p>결과: <span id="translationResult">{{ translated_text }}</span></p>
         <p>결과: <span id="imgCatResult">{{ img_cat }}</span></p>
         <img id="imageResult" src="" alt="이미지 결과">
+        <!-- "이전" 화살표 -->
+        <img id="prevArrow" src="./img/left.png" alt="이전" class="arrow">
+        
+        <!-- "다음" 화살표 -->
+        <img id="nextArrow" src="./img/right.png" alt="다음" class="arrow">
+
+        <button id="jButton">정보 확인</button>
+    </div>
         <button onclick="document.location.href='main'" id="backToSearchButton">검색 페이지로 돌아가기</button>
     </div>
+    <script src="{{ url_for('static', filename='js/result.js') }}"></script>
+</body>
+</html> {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결과 페이지</title>
+    <link rel="stylesheet" href={{url_for('static',filename='css/result.css')}}>
+</head>
+<body>
+    <a href="{{ url_for('view.main') }}">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
+    </a>
+    
+    <!-- 로딩 화면 -->
+    <div id="loadingContainer">
+        <div class="loading"></div>
+        <p id="loadingText">로딩 중</p>
+        <p>결과가 나오기까지 대략 5분 정도 소요됩니다.</p>
+    </div>
+
+    <!-- 결과 화면 (처음에는 숨겨져 있음) -->
+    <div id="results" style="display: none;">
+        <h3>인공지능 결과</h3>
+        <p>결과: <span id="translationResult">{{ translated_text }}</span></p>
+        <p>결과: <span id="imgCatResult">{{ img_cat }}</span></p>
+        
+        <!-- 이미지 컨테이너 -->
+        <div id="imageContainer"></div>
+        
+        <!-- "이전" 화살표 -->
+        <img id="prevArrow" src="./img/left.png" alt="이전" class="arrow">
+        
+        <!-- "다음" 화살표 -->
+        <img id="nextArrow" src="./img/right.png" alt="다음" class="arrow">
+        
+        <button id="jButton">정보 확인</button>
+    </div>
+
+    <button onclick="document.location.href='main'" id="backToSearchButton">검색 페이지로 돌아가기</button>
+
     <script src="{{ url_for('static', filename='js/result.js') }}"></script>
 </body>
 </html>

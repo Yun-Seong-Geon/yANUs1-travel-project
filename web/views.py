@@ -5,6 +5,7 @@ from src import translate as ts
 from flask import request, flash, redirect, url_for
 from src import test_ai as ai
 from src import ai_fuction as af
+from src import scrap 
 from . import db
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
@@ -128,8 +129,12 @@ def result():
 MEDIA_FOLDER = os.path.join('web/static/media')
 
 
-@views.route('/get_prediction')
+from flask import jsonify, session, request, url_for
+from werkzeug.utils import secure_filename
+import os
+
 @login_required
+@views.route('/get_prediction')
 def get_prediction():
     """_summary_
         이미지를 예측하는 함수
@@ -137,7 +142,7 @@ def get_prediction():
         _type_: json 파일
     """
     if not os.path.exists(MEDIA_FOLDER):  # Check if media directory exists
-        os.makedirs(MEDIA_FOLDER)  # If not, create it\
+        os.makedirs(MEDIA_FOLDER)  # If not, create it
 
     search_term = request.args.get('search', default="")
 
@@ -147,34 +152,53 @@ def get_prediction():
 
     # 예측 진행
     translated_text = search_term
-    img_cat, img_data_raw = af.predicts(ai.gan_model(translated_text))
-    # raw 이미지 데이터를 실제 파일로 저장
-    filename = secure_filename(f"{search_term}.jpeg")
-    image_path = os.path.join(MEDIA_FOLDER, filename)
+    generated_images = ai.gan_model(translated_text)  # Change this line
 
-    with open(image_path, 'wb') as f:
-        f.write(img_data_raw)
+    img_cats = []
+    img_srcs = []
+    for idx, img_data_raw in enumerate(generated_images):  # Change this line
+        img_cat, _ = af.predicts(img_data_raw)
+        img_cats.append(img_cat)
 
-    # 이미지 경로를 DB에 저장
+        filename = secure_filename(f"{search_term}_{idx}.jpeg")
+        image_path = os.path.join(MEDIA_FOLDER, filename)
+
+        with open(image_path, 'wb') as f:
+            f.write(img_data_raw)
+
+        img_srcs.append(url_for('static', filename='media/' + filename))
+
+    # 이미지 경로를 DB에 저장 (이 부분은 어떻게 처리할지에 따라 다를 수 있음)
     text_to_translate = session.get('text_to_translate')
     history = SearchHistory.query.filter_by(
         search_text=text_to_translate).first()
     if history:
-        history.image_path = filename
+        history.image_path = ','.join([secure_filename(f"{search_term}_{idx}.jpeg") for idx, _ in enumerate(generated_images)])  # Change this line
         db.session.commit()
 
     result = {
         'translated_text': translated_text,
-        'img_cat': img_cat,
-        'img_src': url_for('static', filename='media/' + filename)
+        'img_cats': img_cats,
+        'img_srcs': img_srcs
     }
+
     # 예측 결과와 검색어를 세션에 저장
     session['predicted_data'] = result
     session['search_term'] = search_term
 
-    return jsonify(result)## hello
+    return jsonify(result)
+
 
 
 @views.route('/media/<filename>')
 def media_serve(filename):
     return send_from_directory(MEDIA_FOLDER, filename)
+
+@views.route('/information')
+# TODO 주영이한테 화살표 이미지 받기이미지 받기 
+def information():
+    search_term = request.args.get('search', default="")
+    text_to_translate = session.get('text_to_translate')
+    스크랩결과 = scrap.scrap_tourist_site_info(text_to_translate)
+    
+    return render_template('information.html', search_term = search_term, scrap_source = 스크랩결과)

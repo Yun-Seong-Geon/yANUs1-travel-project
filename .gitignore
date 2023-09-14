@@ -1,8 +1,17 @@
 # Byte-compiled / optimized / DLL files
+__pycache__
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
+__pycache__/
+AI_MODEL/BigTransferModel1/
 
+# Ignore .pb files
+*.pb
+
+# Ignore database files
+*.db
 # C extensions
 *.so
 
