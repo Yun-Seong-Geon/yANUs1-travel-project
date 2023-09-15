@@ -8,7 +8,7 @@
     
 </head>
 <body>
-    <img src="./img/logo.png" alt="logo">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
 
     <!-- "이전" 화살표 -->
     <img id="prevArrow" src="./img/left.png" alt="이전" class="arrow">
@@ -25,7 +25,7 @@
                 <h3>@설명</h3>
 
                 <img src="https://placekitten.com/200/300" alt="고양이 이미지" class="contentimg">
-                <p>여기에 설명 내용을 입력하세요.여기에 설명 내용을 입력하세요.여기에 설명 내용을 입력하세요.</p>
+                <p>{{ scrap_source }}</p>
                 
             </div>
         </div>
