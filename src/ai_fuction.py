@@ -82,7 +82,7 @@ def predicts(generated_images: object)->object:
     Returns:
         object: 예측된 결과 list와 이미지 객체
     """
-    model_path = 'AI_train/BigTransferModel_v2.h5'
+    model_path = 'AI_MODEL/BigTransferModel1'
     with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
         loaded_model = tf.keras.models.load_model(model_path,compile=False)
 

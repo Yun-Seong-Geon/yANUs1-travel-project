@@ -9,7 +9,7 @@ import os
 db = SQLAlchemy()
 migrate = Migrate()
 DB_name = 'database.db'
-def create_app():
+def create_app()->any:
     app = Flask(__name__,static_folder='static',)
     
     app.config['SECRET_KEY'] = 'yANUs1 ai project'

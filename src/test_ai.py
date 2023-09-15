@@ -1,6 +1,4 @@
 from keras_cv.models import StableDiffusion
-import translate as ts
-import ai_fuction as af
 
 
 # 모델은 개인이 다운로드 해야함!

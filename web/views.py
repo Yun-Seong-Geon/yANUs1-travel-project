@@ -129,9 +129,6 @@ def result():
 MEDIA_FOLDER = os.path.join('web/static/media')
 
 
-from flask import jsonify, session, request, url_for
-from werkzeug.utils import secure_filename
-import os
 
 @login_required
 @views.route('/get_prediction')
