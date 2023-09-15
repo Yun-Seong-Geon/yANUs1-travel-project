@@ -28,10 +28,10 @@
         <div id="imageContainer"></div>
         
         <!-- "이전" 화살표 -->
-        <img id="prevArrow" src="./img/left.png" alt="이전" class="arrow">
+        <img id="prevArrow" src="{{ url_for('static', filename='left.png') }}" alt="이전" class="arrow">
         
         <!-- "다음" 화살표 -->
-        <img id="nextArrow" src="./img/right.png" alt="다음" class="arrow">
+        <img id="nextArrow" src="{{ url_for('static', filename='right.png') }}" alt="다음" class="arrow">
         
         <button id="jButton">정보 확인</button>
         <button onclick="document.location.href='main'" id="backToSearchButton">검색 페이지로 돌아가기</button>
