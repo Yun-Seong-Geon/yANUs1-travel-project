@@ -6,8 +6,7 @@ from PIL import Image
 from io import BytesIO
 import numpy as np
 import tensorflow_hub as tfhub
-
-
+from src import test_ai
 categories = {
     0: 'bigben',
     1: 'santorini',
@@ -30,6 +29,26 @@ categories = {
     18: 'Torre_pendente_di_Pisa',
     19: 'Wat_Chedi_Luang'
 }
+class SingletonModel:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            print("Creating Singleton Instance")
+            cls._instance = super(SingletonModel, cls).__new__(cls)
+
+            # 모델 로딩 코드
+            model_path = 'AI_MODEL/BigTransferModel1'
+            with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
+                cls._instance.model = tf.keras.models.load_model(model_path, compile=False)
+        return cls._instance
+
+    def predict(self, processed_images):
+        predictions = self.model.predict(processed_images)
+        predicted_class_idx = np.argmax(predictions, axis=1)
+        return predicted_class_idx
+    
+
 
 
 def numpy_to_image(imgs: object)-> object:
@@ -72,24 +91,23 @@ def preparing(images:list)->list:
     imageArr = imageArr / 255.0
     return imageArr
 
-def predicts(generated_images: object)->object:
-    """요약:
-    이미지를 입력받으면 그이미지를 CNN모델에서 예측하는 함수
+def predicts(generated_images: object) -> object:
     
-    Args:
-        generated_images (object): 이미지 객체
+    singleton_model = SingletonModel()
+    processed_images = preparing(generated_images)  # 이미지 전처리 함수
+    
+    predicted_results = []
+    for img in processed_images:
+        img_reshaped = np.expand_dims(img, axis=0)  # 모델이 받아들일 수 있는 형태로 차원을 추가
+        if img_reshaped.shape[-1] != 3:  # 마지막 차원이 3이 아니면 채널을 추가
+            img_reshaped = np.repeat(img_reshaped, 3, axis=-1)
+        predicted_class_idx = singleton_model.predict(img_reshaped)
+        predicted_results.append(categories[predicted_class_idx[0]])
 
-    Returns:
-        object: 예측된 결과 list와 이미지 객체
-    """
-    model_path = 'AI_MODEL/BigTransferModel1'
-    with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
-        loaded_model = tf.keras.models.load_model(model_path,compile=False)
+    return predicted_results, generated_images
 
-    processed_images = preparing(generated_images)
-        
 
-    predictions = loaded_model.predict(processed_images)
-    predicted_class_idx = np.argmax(predictions, axis=1)
-    img = numpy_to_image(generated_images)
-    return categories[predicted_class_idx[0]], img
+if __name__ == '__main__':
+    inputText = input('텍스트 입력: ')
+    text,imgs = predicts(test_ai.gan_generate(inputText))
+    print(text)

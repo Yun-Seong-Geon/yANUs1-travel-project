@@ -63,20 +63,16 @@ img{
 
 /* 로딩 애니메이션 스타일 */
 .loading {
-    border: 16px solid #f3f3f3; /* 테두리 색 */
-    border-top: 16px solid #72bf44; /* 상단 색 */
-    border-radius: 50%; /* 원형으로 만들기 */
-    width: 120px; /* 원 크기 설정 */
-    height: 120px; /* 원 크기 설정 */
-    animation: spin 0.8s linear infinite; /* 애니메이션 이름, 지속시간, 타이밍 함수, 반복횟수 */
+    width : 200px;
+    height : 200px;
+    border : 0px solid #000;
+    border-radius: 50%;
     position: absolute;
-    top: 30%; 
-    left: 46%;
-    transform: translate(-50%, -50%);
-  }
-  
+}
+
+.loading:nth-child(1){
+    border-bottom-width: 8px;
+    border-color: rgb(255,255,255);
+    animation: rotate1 2s linear infinite;
+}
   /* spin 애니메이션 키프레임 정의 */
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
