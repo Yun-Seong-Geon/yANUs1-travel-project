@@ -149,7 +149,7 @@ def get_prediction():
 
     # 예측 진행
     translated_text = search_term
-    generated_images = ai.gan_model(translated_text)  # Change this line
+    generated_images = ai.gan_generate(translated_text)  # Change this line
 
     img_cats = []
     img_srcs = []
@@ -192,7 +192,7 @@ def media_serve(filename):
     return send_from_directory(MEDIA_FOLDER, filename)
 
 @views.route('/information')
-# TODO 주영이한테 화살표 이미지 받기이미지 받기 
+
 def information():
     search_term = request.args.get('search', default="")
     text_to_translate = session.get('text_to_translate')
