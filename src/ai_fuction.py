@@ -6,7 +6,7 @@ from PIL import Image
 from io import BytesIO
 import numpy as np
 import tensorflow_hub as tfhub
-import test_ai
+from src import test_ai
 categories = {
     0: 'bigben',
     1: 'santorini',
@@ -39,7 +39,7 @@ class SingletonModel:
 
             # 모델 로딩 코드
             model_path = 'AI_MODEL/BigTransferModel1'
-            with tf.keras.utils.custom_object_scope({'KerasLayer': tf.hub.KerasLayer}):
+            with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
                 cls._instance.model = tf.keras.models.load_model(model_path, compile=False)
         return cls._instance
 
@@ -91,20 +91,20 @@ def preparing(images:list)->list:
     imageArr = imageArr / 255.0
     return imageArr
 
-def predicts(generated_images: object)->object:
-    """요약:
-    이미지를 입력받으면 그이미지를 CNN모델에서 예측하는 함수
-
-    Args:
-        generated_images (object): 이미지 객체
-
-    Returns:
-        object: 예측된 결과 list와 이미지 객체
-    """
+def predicts(generated_images: object) -> object:
+    
     singleton_model = SingletonModel()
     processed_images = preparing(generated_images)  # 이미지 전처리 함수
-    predicted_class_idx = singleton_model.predict(processed_images)
-    return categories[predicted_class_idx[0]], generated_images
+    
+    predicted_results = []
+    for img in processed_images:
+        img_reshaped = np.expand_dims(img, axis=0)  # 모델이 받아들일 수 있는 형태로 차원을 추가
+        if img_reshaped.shape[-1] != 3:  # 마지막 차원이 3이 아니면 채널을 추가
+            img_reshaped = np.repeat(img_reshaped, 3, axis=-1)
+        predicted_class_idx = singleton_model.predict(img_reshaped)
+        predicted_results.append(categories[predicted_class_idx[0]])
+
+    return predicted_results, generated_images
 
 
 if __name__ == '__main__':
