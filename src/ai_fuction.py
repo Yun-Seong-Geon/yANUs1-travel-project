@@ -38,7 +38,8 @@ class SingletonModel:
             cls._instance = super(SingletonModel, cls).__new__(cls)
 
             # 모델 로딩 코드
-            model_path = 'AI_MODEL/BigTransferModel1'
+            
+            model_path = '/Users/yunseong-geon/Desktop/AI_MODEL/BigTransferModel1'
             with tf.keras.utils.custom_object_scope({'KerasLayer': hub.KerasLayer}):
                 cls._instance.model = tf.keras.models.load_model(model_path, compile=False)
         return cls._instance
@@ -83,7 +84,7 @@ def preparing(images:list)->list:
     """
     resized_images = []
     for img in images:
-        pil_img = Image.fromarray(img)  # numpy 배열을 PIL Image로 변환
+        pil_img = Image.fromarray(img.astype('uint8'))  # numpy 배열을 PIL Image로 변환
         resized_img = pil_img.resize((256, 256))  # 크기를 256x256으로 조절
         resized_images.append(np.array(resized_img))  # PIL Image를 numpy 배열
 
@@ -94,7 +95,10 @@ def preparing(images:list)->list:
 def predicts(generated_images: object) -> object:
     
     singleton_model = SingletonModel()
-    processed_images = preparing(generated_images)  # 이미지 전처리 함수
+    print("Before preparing:", generated_images.shape) 
+    generated_images_list = [img for img in generated_images] 
+    processed_images = preparing(generated_images_list)  # 이미지 전처리 함수
+    print("After preparing:", generated_images_list.shape)
     
     predicted_results = []
     for img in processed_images:
