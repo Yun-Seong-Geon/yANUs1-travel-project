@@ -7,7 +7,7 @@ import tensorflow_hub as hub
 
 def test(path:str):
     """_summary_
-    모델 파일 경로를 지정하고 모델을 선택하고 모델을 불러와서 테스트를 진행한다.
+    모델 파일 경로를 지정하고 모델을 선택하고 모델을 불러와서 테스트를 진행하는 함수
 
     Args:
         path (str): 모델 경로

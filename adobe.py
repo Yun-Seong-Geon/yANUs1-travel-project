@@ -3,22 +3,12 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import matplotlib.pyplot as plt
 from PIL import Image
+import ai_fuction as af
 
 
 def adobe(img)->str:
 
-    categories = {
-            0 : 'Bigben' ,
-            1 : 'Santorini',
-            2 : 'Matterhorn',
-            3 : 'Grand_Canyon',
-            4 : 'the_statue_of_liberty',
-            5 : 'eiffel_tower' ,
-            6 : 'Gold_gate_bridge', 
-            7 : 'Osakajo', 
-            8 : 'pisa_tower', 
-            9 : 'ayasofya_camii' 
-        }
+    categories = af.categories
     img=Image.open(img)
     #이미지 전처리 및 정규화
     img = np.array(img)

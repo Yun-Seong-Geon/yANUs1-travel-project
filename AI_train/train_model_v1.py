@@ -5,38 +5,9 @@ from keras import layers
 import matplotlib.pyplot as plt
 import preprocessing as pp
 
-
-#CNN 모델 1
-# def create_model():
-#     model = keras.Sequential()
-
-#     model.add(layers.Conv2D(64, (15, 15), activation='relu',input_shape=(256,256,3),padding='same',strides=(3,3)))
-#     model.add(BatchNormalization())
-#     model.add(MaxPooling2D(pool_size=(3,3)))
-
-#     model.add(layers.Conv2D(64, (7, 7), activation='relu', padding='same',strides=(2,2)))
-#     model.add(BatchNormalization())
-#     model.add(MaxPooling2D(pool_size=(2,2)))
-
-#     model.add(layers.Conv2D(32, (5, 5), activation='relu', padding='same'))
-#     model.add(BatchNormalization())
-#     model.add(MaxPooling2D(pool_size=(2,2)))
-
-#     model.add(layers.Conv2D(16, (3, 3), activation='relu', padding='same'))
-#     model.add(BatchNormalization())
-#     model.add(MaxPooling2D(pool_size=(2,2)))
-#     model.add(layers.Dropout(0.2))
-
-#     #DNN
-#     model.add(layers.Flatten())
-#     model.add(layers.Dense(512, activation='relu'))
-#     model.add(layers.Dense(5, activation='softmax'))
-
-#     return model
-
 class CustomCnnModel(tf.keras.Model):
     """_summary_
-    CNN 모델 선언
+    CNN 모델 선언 클래스
     Usage:
         모델을 인스턴스화하고 훈련 전에 컴파일을 진행
     """    
